@@ -1,7 +1,17 @@
 'use client';
 
-import { PetType } from '@/app/api/pets/route';
 import React, { useEffect, useState } from 'react';
+import { PetType } from '@/app/api/pets/route';
+import {
+  Container,
+  Title,
+  PetList,
+  PetItem,
+  PetName,
+  PetDescription,
+  ErrorMessage,
+  LoadingMessage,
+} from './style';
 
 export const Pets: React.FC = () => {
   const [petTypes, setPetTypes] = useState<PetType[]>([]);
@@ -29,28 +39,28 @@ export const Pets: React.FC = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <LoadingMessage>Loading...</LoadingMessage>;
   }
 
   if (error) {
-    return <div>{error}</div>;
+    return <ErrorMessage>{error}</ErrorMessage>;
   }
 
   return (
-    <div>
-      <h1>Tipos de Pets</h1>
+    <Container>
+      <Title>Tipos de Pets</Title>
       {petTypes.length === 0 ? (
         <p>Nenhum tipo de pet encontrado.</p>
       ) : (
-        <ul>
+        <PetList>
           {petTypes.map((pet) => (
-            <li key={pet.id}>
-              <h2>{pet.name}</h2>
-              <p>{pet.description}</p>
-            </li>
+            <PetItem key={pet.id}>
+              <PetName>{pet.name}</PetName>
+              <PetDescription>{pet.description}</PetDescription>
+            </PetItem>
           ))}
-        </ul>
+        </PetList>
       )}
-    </div>
+    </Container>
   );
 };

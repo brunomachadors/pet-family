@@ -1,8 +1,9 @@
-'use client'; // Adicione esta linha no topo do arquivo
+'use client';
 
 import Image from 'next/image';
 import React from 'react';
 import { BannerDiv } from './style';
+import { Pets } from '../Pets';
 
 function Banner() {
   return (
