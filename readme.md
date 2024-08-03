@@ -43,7 +43,7 @@ O Pet Family é um site dedicado a ajudar os donos de pets a manterem todas as i
 
 - **Frontend**:
 
-  - Desenvolvido com React.
+  - Desenvolvido com React e Next.js.
   - Estilizado com Styled Components para uma UI moderna e responsiva.
 
 - **Backend**:
@@ -55,6 +55,26 @@ O Pet Family é um site dedicado a ajudar os donos de pets a manterem todas as i
 
 ## Instruções de Instalação
 
+### Iniciar o Servidor de Desenvolvimento
+
+Primeiro, execute o servidor de desenvolvimento:
+
+```bash
+npm run dev
+# ou
+yarn dev
+# ou
+pnpm dev
+# ou
+bun dev
+```
+
+Abra [http://localhost:3000](http://localhost:3000) no seu navegador para ver o resultado.
+
+Você pode começar a editar a página modificando `src/pages/index.tsx`. A página é atualizada automaticamente conforme você edita o arquivo.
+
+### Clonar o Repositório e Instalar Dependências
+
 1. **Clone o repositório**:
 
    ```bash
@@ -62,35 +82,29 @@ O Pet Family é um site dedicado a ajudar os donos de pets a manterem todas as i
    cd pet-family
    ```
 
-2. **Instale as dependências do frontend**:
+2. **Instale as dependências**:
 
    ```bash
-   cd frontend
    npm install
    ```
 
-3. **Execute o frontend**:
+3. **Execute o projeto**:
 
    ```bash
-   npm start
+   npm run dev
    ```
 
-4. **Instale as dependências do backend** (se aplicável):
+### Implantação
 
-   ```bash
-   cd backend
-   npm install
-   ```
+A maneira mais fácil de implantar sua aplicação Next.js é usar a [Plataforma Vercel](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) criada pelos criadores do Next.js.
 
-5. **Execute o backend** (se aplicável):
-   ```bash
-   npm start
-   ```
+Consulte nossa [documentação de implantação do Next.js](https://nextjs.org/docs/deployment) para mais detalhes.
 
 ## Tecnologias Utilizadas
 
 - **Frontend**:
 
+  - Next.js
   - React
   - Styled Components
   - Axios (para requisições HTTP)
