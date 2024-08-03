@@ -1,7 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['static.vecteezy.com'], // Adicione o domínio da imagem aqui
+    domains: [
+      'static.vecteezy.com',
+      'images.rawpixel.com',
+      'res.cloudinary.com',
+    ],
   },
 };
 
