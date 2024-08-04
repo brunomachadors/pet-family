@@ -29,12 +29,10 @@ let petTypes: PetType[] = [
   },
 ];
 
-// Handle GET requests
 export async function GET() {
   return NextResponse.json(petTypes);
 }
 
-// Handle POST requests
 export async function POST(request: Request) {
   try {
     const newPetType: PetType = await request.json();

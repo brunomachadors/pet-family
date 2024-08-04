@@ -53,7 +53,7 @@ export const NavLinkBlack = styled.p`
   text-decoration: none;
   color: #fad72c;
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 1.5rem;
   border-radius: 4px;
   display: flex;
   align-items: center;
