@@ -78,7 +78,7 @@ Você pode começar a editar a página modificando `src/pages/index.tsx`. A pág
 1. **Clone o repositório**:
 
    ```bash
-   git clone https://github.com/seu-usuario/pet-family.git
+   git clone https://github.com/brunomachadors/pet-family.git
    cd pet-family
    ```
 
@@ -117,7 +117,7 @@ Consulte nossa [documentação de implantação do Next.js](https://nextjs.org/d
 ## Desenvolvedores
 
 - Bruno Machado
-- Paablo Machado
+- Pablo Machado
 
 ## Licença
 
