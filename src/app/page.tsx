@@ -1,7 +1,8 @@
 import styles from './page.module.css';
-import Banner from './components/Banner';
+
 import LandingInfo from './components/LandingInfo';
 import Features from './components/Features';
+import Banner from './components/banner';
 
 export default function Home() {
   return (
