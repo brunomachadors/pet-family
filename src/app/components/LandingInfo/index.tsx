@@ -8,7 +8,6 @@ import {
 } from './style';
 
 function LandingInfo() {
-  console.log('LandingInfo rendered'); // Adicione logging para verificar se o componente está sendo renderizado corretamente
   return (
     <LandingInfoContainer>
       <LandingInfoHeader>Bem-vindo ao Pet Family! </LandingInfoHeader>
