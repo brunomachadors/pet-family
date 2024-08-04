@@ -10,6 +10,7 @@ export type FeatureType = {
 
 function Features() {
   const [features, setFeatures] = useState<FeatureType[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchFeatures() {
@@ -19,11 +20,17 @@ function Features() {
         setFeatures(data);
       } catch (error) {
         console.error('Error fetching features:', error);
+      } finally {
+        setLoading(false);
       }
     }
 
     fetchFeatures();
   }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <Container>

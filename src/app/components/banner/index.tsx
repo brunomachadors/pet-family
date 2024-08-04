@@ -12,6 +12,7 @@ function Banner() {
         alt="French Bulldog"
         width={500}
         height={500}
+        priority
       />
     </BannerDiv>
   );

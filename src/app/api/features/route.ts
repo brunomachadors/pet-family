@@ -1,3 +1,4 @@
+import { sql } from '@vercel/postgres';
 import { NextResponse } from 'next/server';
 
 export type FeatureType = {
@@ -5,33 +6,41 @@ export type FeatureType = {
   name: string;
 };
 
-let features: FeatureType[] = [
-  { id: 1, name: 'Registro de histórico de vacinas e tratamentos' },
-  { id: 2, name: 'Contatos de veterinários' },
-  { id: 3, name: 'Informações específicas para cada tipo de animal e raça' },
-  { id: 4, name: 'Dicas e informações personalizadas para o seu pet' },
-  { id: 5, name: 'Localização de lugares pet-friendly' },
-  { id: 6, name: 'Cupons de desconto em lojas parceiras' },
-];
-
 export async function GET() {
-  return NextResponse.json(features);
+  try {
+    const { rows } = await sql<FeatureType[]>`SELECT * FROM features`;
+    return NextResponse.json(rows);
+  } catch (error) {
+    console.error('Erro ao consultar o banco de dados:', error);
+    return NextResponse.json(
+      { error: 'Erro ao consultar o banco de dados' },
+      { status: 500 }
+    );
+  }
 }
 
 export async function POST(request: Request) {
   try {
-    const newFeature: FeatureType = await request.json();
-    const newId =
-      features.length > 0
-        ? Math.max(...features.map((Feature) => Feature.id)) + 1
-        : 1;
-    const FeatureWithId = { ...newFeature, id: newId };
-    features.push(FeatureWithId);
-    return NextResponse.json(FeatureWithId, { status: 201 });
+    const { name } = await request.json();
+
+    if (!name || typeof name !== 'string') {
+      return NextResponse.json(
+        { error: 'O nome é obrigatório e deve ser uma string' },
+        { status: 400 }
+      );
+    }
+
+    const result = await sql`
+      INSERT INTO features (name) VALUES (${name}) RETURNING *`;
+
+    const newFeature = result.rows[0];
+
+    return NextResponse.json(newFeature, { status: 201 });
   } catch (error) {
+    console.error('Erro ao inserir o recurso no banco de dados:', error);
     return NextResponse.json(
-      { message: 'Failed to add new Feature' },
-      { status: 400 }
+      { error: 'Erro ao inserir o recurso no banco de dados' },
+      { status: 500 }
     );
   }
 }
