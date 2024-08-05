@@ -23,7 +23,7 @@ export const NavBarLoggedIn = () => {
       <NavList>
         <NavItem>
           <SignOutButton>
-            <NavLink>LOGOUT</NavLink>
+            <NavLink style={{ cursor: 'pointer' }}>LOGOUT</NavLink>
           </SignOutButton>
         </NavItem>
       </NavList>
