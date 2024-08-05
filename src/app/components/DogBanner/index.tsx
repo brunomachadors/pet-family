@@ -4,7 +4,7 @@ import Image from 'next/image';
 import React from 'react';
 import { BannerDiv } from './style';
 
-function Banner() {
+export function DogBanner() {
   return (
     <BannerDiv>
       <Image
@@ -17,5 +17,3 @@ function Banner() {
     </BannerDiv>
   );
 }
-
-export default Banner;

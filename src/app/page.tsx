@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 import styles from './page.module.css';
 import LandingInfo from './components/LandingInfo';
 import Features from './components/Features';
-import Banner from './components/Banner';
+import { DogBanner } from './components/DogBanner';
 
 export default function Landing() {
   const { isSignedIn } = useUser();
@@ -25,7 +25,7 @@ export default function Landing() {
 
   return (
     <main className={styles.main}>
-      <Banner />
+      <DogBanner />
       <LandingInfo />
       <Features />
     </main>
