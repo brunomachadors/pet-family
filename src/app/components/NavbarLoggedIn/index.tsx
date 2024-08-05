@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { SignOutButton } from '@clerk/nextjs';
 import {
   NavContainer,
   NavDivBlack,
@@ -11,7 +12,7 @@ import {
   NavList,
 } from './style';
 
-export const NavBar = () => {
+export const NavBarLoggedIn = () => {
   return (
     <NavContainer>
       <NavDivBlack>
@@ -20,20 +21,14 @@ export const NavBar = () => {
         </Link>
       </NavDivBlack>
       <NavList>
-        <NavItem></NavItem>
         <NavItem>
-          <Link href="/pages/login" passHref>
-            <NavLink>LOGIN</NavLink>
-          </Link>
-        </NavItem>
-        <NavItem>
-          <Link href="/about" passHref>
-            <NavLink>SOBRE</NavLink>
-          </Link>
+          <SignOutButton>
+            <NavLink>LOGOUT</NavLink>
+          </SignOutButton>
         </NavItem>
       </NavList>
     </NavContainer>
   );
 };
 
-export default NavBar;
+export default NavBarLoggedIn;

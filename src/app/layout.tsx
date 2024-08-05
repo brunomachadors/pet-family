@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
+import { ClerkProvider } from '@clerk/nextjs';
 import './globals.css';
-import NavBar from './components/Navbar';
+import NavBarSwitcher from './components/NavbarSwitcher';
+import { Footer } from './components/Footer/style';
 
 export const metadata: Metadata = {
   title: 'PET FAMILY',
@@ -13,26 +15,31 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link
-          rel="icon"
-          href="/icon-192x192.png"
-          type="image/png"
-          sizes="192x192"
-        />
-        <link
-          rel="icon"
-          href="/icon-512x512.png"
-          type="image/png"
-          sizes="512x512"
-        />
-      </head>
-      <body>
-        <NavBar />
-        {children}
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <head>
+          <link rel="icon" href="/favicon.ico" sizes="any" />
+          <link
+            rel="icon"
+            href="/icon-192x192.png"
+            type="image/png"
+            sizes="192x192"
+          />
+          <link
+            rel="icon"
+            href="/icon-512x512.png"
+            type="image/png"
+            sizes="512x512"
+          />
+        </head>
+        <body>
+          <NavBarSwitcher />
+          <main>{children}</main>
+          <Footer>
+            <p>&copy; 2024 PET FAMILY. Todos os direitos reservados.</p>
+          </Footer>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
