@@ -1,40 +1,55 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useUser } from '@clerk/nextjs';
-import {
-  Container,
-  Header,
-  MainContent,
-  FeatureSection,
-  ContactSection,
-} from './style';
+import { Container, Header, MainContent, ContactSection } from './style';
+import { User } from '@/app/utils/types';
+import { getUser } from '@/app/utils/getUser';
+import { createUser } from '@/app/utils/createUser';
 
 const Home: React.FC = () => {
   const { user } = useUser();
+  const [userExists, setUserExists] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    if (user) {
+      const userData: User = {
+        id: user.id,
+        firstName: user.firstName || '',
+        lastName: user.lastName || '',
+        emailAddresses: user.emailAddresses[0]?.emailAddress || '',
+      };
+
+      checkAndCreateUser(userData);
+    }
+  }, [user]);
+
+  const checkAndCreateUser = async (userData: User) => {
+    try {
+      const data = await getUser(userData.id);
+      if (data) {
+        setUserExists(true);
+      } else {
+        const createdUser = await createUser(userData);
+        setUserExists(!!createdUser);
+      }
+    } catch (error) {
+      console.error('Erro ao verificar ou criar usuário:', error);
+      setUserExists(false);
+    }
+  };
 
   if (!user) {
-    return null;
+    return <div>Loading...</div>;
   }
 
   return (
     <Container>
       <Header>
-        <h1>Bem-vindo, {user.firstName}!</h1>
+        <h1>Bem-vindo, {user.firstName || 'Usuário'}!</h1>
         <p>Aqui está a sua página principal.</p>
       </Header>
       <MainContent>
-        <FeatureSection>
-          <h2>O que oferecemos</h2>
-          <ul>
-            <li>Registro de histórico de vacinas e tratamentos</li>
-            <li>Contatos de veterinários</li>
-            <li>Informações específicas para cada tipo de animal e raça</li>
-            <li>Dicas e informações personalizadas para o seu pet</li>
-            <li>Localização de lugares pet-friendly</li>
-            <li>Cupons de desconto em lojas parceiras</li>
-          </ul>
-        </FeatureSection>
         <ContactSection>
           <h2>Entre em Contato</h2>
           <p>Se tiver alguma dúvida ou sugestão, entre em contato conosco!</p>
