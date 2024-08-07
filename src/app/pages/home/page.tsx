@@ -2,42 +2,58 @@
 
 import React, { useEffect, useState } from 'react';
 import { useUser } from '@clerk/nextjs';
-import { Container, Header, MainContent, ContactSection } from './style';
+import {
+  Container,
+  Header,
+  MainContent,
+  ContactSection,
+  FeatureSection,
+  HeaderTitle,
+  HeaderParagraph,
+} from './style';
 import { User } from '@/app/utils/types';
-import { getUser } from '@/app/utils/getUser';
-import { createUser } from '@/app/utils/createUser';
+import PetList from '@/app/components/PetCardList';
 
 const Home: React.FC = () => {
   const { user } = useUser();
   const [userExists, setUserExists] = useState<boolean | null>(null);
+  const [userId, setUserId] = useState<number | null>(null);
 
   useEffect(() => {
     if (user) {
-      const userData: User = {
-        id: user.id,
-        firstName: user.firstName || '',
-        lastName: user.lastName || '',
-        emailAddresses: user.emailAddresses[0]?.emailAddress || '',
+      const fetchUser = async () => {
+        try {
+          const response = await fetch(`/api/users/${user.id}`);
+          const data = await response.json();
+
+          if (data.error) {
+            const userData: User = {
+              id: user.id,
+              firstName: user.firstName || '',
+              lastName: user.lastName || '',
+              emailAddresses: user.emailAddresses[0]?.emailAddress || '',
+            };
+            const createdUserResponse = await fetch('/api/users', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(userData),
+            });
+            const createdUser = await createdUserResponse.json();
+            setUserId(createdUser.id_user);
+          } else {
+            setUserId(data.id_user);
+          }
+        } catch (error) {
+          console.error('Erro ao verificar ou criar usuário:', error);
+          setUserExists(false);
+        }
       };
 
-      checkAndCreateUser(userData);
+      fetchUser();
     }
   }, [user]);
-
-  const checkAndCreateUser = async (userData: User) => {
-    try {
-      const data = await getUser(userData.id);
-      if (data) {
-        setUserExists(true);
-      } else {
-        const createdUser = await createUser(userData);
-        setUserExists(!!createdUser);
-      }
-    } catch (error) {
-      console.error('Erro ao verificar ou criar usuário:', error);
-      setUserExists(false);
-    }
-  };
 
   if (!user) {
     return <div>Loading...</div>;
@@ -46,10 +62,15 @@ const Home: React.FC = () => {
   return (
     <Container>
       <Header>
-        <h1>Bem-vindo, {user.firstName || 'Usuário'}!</h1>
-        <p>Aqui está a sua página principal.</p>
+        <HeaderTitle>
+          Bem-vindo{user.firstName ? ', ' + user.firstName : ''}!
+        </HeaderTitle>
+        <HeaderParagraph>Aqui estão todos os seus pets:</HeaderParagraph>
       </Header>
       <MainContent>
+        <FeatureSection>
+          {userId && <PetList userId={userId} />}{' '}
+        </FeatureSection>
         <ContactSection>
           <h2>Entre em Contato</h2>
           <p>Se tiver alguma dúvida ou sugestão, entre em contato conosco!</p>
