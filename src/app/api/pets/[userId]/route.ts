@@ -1,28 +1,31 @@
+import { PetType } from '@/app/utils/types';
 import { sql } from '@vercel/postgres';
 import { NextResponse } from 'next/server';
 
 export async function GET(request: Request) {
   try {
     const url = new URL(request.url);
-    const externalId = url.pathname.split('/').pop();
+    const userId = url.pathname.split('/').pop();
 
-    if (!externalId) {
+    if (!userId || isNaN(Number(userId))) {
       return NextResponse.json(
-        { error: 'External ID do usuário não fornecido' },
+        { error: 'ID do usuário inválido ou não fornecido' },
         { status: 400 }
       );
     }
 
-    const { rows } =
-      await sql`SELECT id_user, first_name, last_name, email FROM users WHERE external_user_id = ${externalId}`;
+    const { rows } = await sql<
+      PetType[]
+    >`SELECT * FROM pets WHERE id_user = ${userId}`;
+
     if (rows.length === 0) {
       return NextResponse.json(
-        { error: 'Usuário não encontrado' },
+        { error: 'Nenhum pet encontrado para o ID do usuário fornecido' },
         { status: 404 }
       );
     }
 
-    return NextResponse.json(rows[0]);
+    return NextResponse.json(rows);
   } catch (error) {
     console.error('Erro ao consultar o banco de dados:', error);
     return NextResponse.json(
