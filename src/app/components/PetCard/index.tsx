@@ -1,4 +1,3 @@
-// src/components/PetCard/PetCard.tsx
 import React from 'react';
 import {
   CardContainer,

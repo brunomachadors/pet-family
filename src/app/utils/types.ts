@@ -1,8 +1,9 @@
 export type User = {
-  id: string;
+  id?: string;
   firstName: string | null;
   lastName: string | null;
-  emailAddresses: string;
+  email: string;
+  externalId: string;
 };
 
 export type PetType = {

@@ -1,5 +1,3 @@
-// app/utils/createUser.ts
-
 import { User } from '@/app/utils/types';
 
 export async function createUser(user: User) {
@@ -12,7 +10,7 @@ export async function createUser(user: User) {
       body: JSON.stringify({
         firstName: user.firstName,
         lastName: user.lastName,
-        email: user.emailAddresses,
+        email: user.email,
         externalId: user.id,
       }),
     });

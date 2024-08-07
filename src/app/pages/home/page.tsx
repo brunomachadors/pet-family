@@ -1,5 +1,4 @@
 'use client';
-
 import React, { useEffect, useState } from 'react';
 import { useUser } from '@clerk/nextjs';
 import {
@@ -28,10 +27,10 @@ const Home: React.FC = () => {
 
           if (data.error) {
             const userData: User = {
-              id: user.id,
               firstName: user.firstName || '',
               lastName: user.lastName || '',
-              emailAddresses: user.emailAddresses[0]?.emailAddress || '',
+              email: user.emailAddresses[0].emailAddress || '',
+              externalId: user.id,
             };
             const createdUserResponse = await fetch('/api/users', {
               method: 'POST',
