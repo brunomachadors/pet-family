@@ -82,3 +82,10 @@ export const DetailsText = styled.p`
     color: #f5f7f8;
   }
 `;
+
+export const PetImageContainer = styled.div`
+  margin: 16px 0; // Espaçamento entre o nome e a imagem
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
