@@ -11,7 +11,7 @@ import {
   HeaderParagraph,
 } from './style';
 import { User } from '@/app/utils/types';
-import PetList from '@/app/components/PetCardList';
+import PetList from '@/app/components/Pet/PetCardList';
 
 const Home: React.FC = () => {
   const { user } = useUser();
