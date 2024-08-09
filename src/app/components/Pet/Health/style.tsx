@@ -13,13 +13,14 @@ export const DetailsContainer = styled.div<DetailsContainerProps>`
   align-items: center;
 `;
 
-export const PetDetailInfo = styled.div`
+export const PetDetailHealth = styled.div`
   display: flex;
   flex-direction: column;
   align-items: stretch;
   height: 90%;
   color: #45474b;
 `;
+
 export const InfoTitle = styled.h2`
   cursor: pointer;
   width: 100%;
@@ -35,11 +36,11 @@ export const LineContainer = styled.div`
   padding: 10px 0;
 `;
 
-export const PetDetailInfoFieldName = styled.p`
+export const PetDetailFieldName = styled.p`
   font-weight: bold;
   margin: 0;
 `;
 
-export const PetDetailInfoValue = styled.p`
+export const PetDetailValue = styled.p`
   margin: 0;
 `;

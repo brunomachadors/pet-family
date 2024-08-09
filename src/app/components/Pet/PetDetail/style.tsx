@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const PetDetailContainer = styled.div`
-  width: 60vw;
+  width: 30vw;
   border: 2px solid #45474b;
   border-radius: 15px;
 
@@ -18,4 +18,11 @@ export const PetDetailHeader = styled.h1`
   text-align: center;
   width: 100%;
   color: #45474b;
+`;
+export const Divider = styled.div`
+  border-top: 1px solid #45474b;
+  width: 30%;
+  display: flex;
+  align-items: center;
+  margin: 5px auto;
 `;

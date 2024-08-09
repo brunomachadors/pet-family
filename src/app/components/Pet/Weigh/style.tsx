@@ -13,7 +13,7 @@ export const DetailsContainer = styled.div<DetailsContainerProps>`
   align-items: center;
 `;
 
-export const PetDetailInfo = styled.div`
+export const PetDetailWeigh = styled.div`
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -35,11 +35,11 @@ export const LineContainer = styled.div`
   padding: 10px 0;
 `;
 
-export const PetDetailInfoFieldName = styled.p`
+export const PetDetailFieldName = styled.p`
   font-weight: bold;
   margin: 0;
 `;
 
-export const PetDetailInfoValue = styled.p`
+export const PetDetailValue = styled.p`
   margin: 0;
 `;
