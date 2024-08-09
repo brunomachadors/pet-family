@@ -2,32 +2,34 @@
 import React, { useState } from 'react';
 import { PetType } from '@/app/utils/types';
 import { PetDetailContainer, PetDetailHeader } from './style';
-import PetDetailInfoComponent from '../PetDetailInfo';
-import PetTabs from '../PetTabs';
+import PetDetailInfoComponent from '../Info';
+
+import Image from 'next/image';
+import { breedImageMap, defaultImageUrl } from '@/app/assets/imageLinks';
+import { PetImageContainer } from '../PetCard/style';
 
 type PetDetailProps = {
   pet: PetType;
 };
 
 const PetDetail: React.FC<PetDetailProps> = ({ pet }) => {
-  const [activeTab, setActiveTab] = useState('info');
-
-  const handleTabClick = (tab: string) => {
-    setActiveTab(tab);
-  };
-
+  const imageUrl =
+    pet.breed && breedImageMap[pet.breed]
+      ? breedImageMap[pet.breed]
+      : defaultImageUrl;
   return (
     <PetDetailContainer>
-      <PetDetailHeader>
-        <h1>{pet.name.toUpperCase()}</h1>
-      </PetDetailHeader>
-      <PetTabs activeTab={activeTab} onTabClick={handleTabClick} />
-      {activeTab === 'info' && <PetDetailInfoComponent pet={pet} />}
-      {activeTab === 'weight' && <p>Peso: Informações de peso aqui.</p>}
-      {activeTab === 'health' && <p>Saúde: Informações de saúde aqui.</p>}
-      {activeTab === 'contacts' && (
-        <p>Contatos: Informações de contatos aqui.</p>
-      )}
+      <PetDetailHeader>{pet.name.toUpperCase()}</PetDetailHeader>
+      <PetImageContainer>
+        <Image
+          src={imageUrl}
+          alt={pet.breed ? pet.breed : 'Imagem padrão'}
+          width={100}
+          height={100}
+          objectFit="contain"
+        />
+      </PetImageContainer>
+      <PetDetailInfoComponent pet={pet}></PetDetailInfoComponent>
     </PetDetailContainer>
   );
 };
