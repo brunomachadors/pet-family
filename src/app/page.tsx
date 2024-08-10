@@ -15,7 +15,7 @@ export default function Landing() {
 
   useEffect(() => {
     if (isSignedIn) {
-      router.push('/pages/home');
+      router.push('/pages/mypets');
     }
   }, [isSignedIn, router]);
 

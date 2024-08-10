@@ -9,12 +9,13 @@ import {
   PetSpecies,
   PetImageContainer,
 } from './style';
-import { PetType } from '@/app/utils/types';
+
 import { breedImageMap, defaultImageUrl } from '@/app/assets/imageLinks';
+import { TPet } from '@/app/types/types';
 
 type PetCardProps = {
-  pet: PetType;
-  onClick: (pet: PetType) => void;
+  pet: TPet;
+  onClick: (pet: TPet) => void;
 };
 
 const PetCard: React.FC<PetCardProps> = ({ pet, onClick }) => {
@@ -33,7 +34,6 @@ const PetCard: React.FC<PetCardProps> = ({ pet, onClick }) => {
             alt={pet.breed ? pet.breed : 'Imagem padrão'}
             width={100}
             height={100}
-            objectFit="contain"
           />
         </PetImageContainer>
         <PetSpecies>{pet.species}</PetSpecies>

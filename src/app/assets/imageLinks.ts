@@ -4,6 +4,8 @@ export const breedImageMap: Record<string, string> = {
   Siamês:
     'https://res.cloudinary.com/dtglidvcw/image/upload/v1723115596/PET%20FAMILTY/siamese_gpagdt.png',
   // Adicione mais raças e URLs de imagem conforme necessário
+  Viralata:
+    'https://res.cloudinary.com/dtglidvcw/image/upload/v1723218491/PET%20FAMILTY/viralata.png',
 };
 
 export const defaultImageUrl =

@@ -15,7 +15,7 @@ export const NavList = styled.ul`
   display: flex;
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 10px;
 
   @media (max-width: 768px) {
     flex-direction: column;

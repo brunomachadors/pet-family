@@ -1,4 +1,4 @@
-import { PetType } from '@/app/utils/types';
+import { TPet } from '@/app/types/types';
 import { sql } from '@vercel/postgres';
 import { NextResponse } from 'next/server';
 
@@ -15,8 +15,8 @@ export async function GET(request: Request) {
     }
 
     const { rows } = await sql<
-      PetType[]
-    >`SELECT * FROM pets WHERE id_user = ${userId}`;
+      TPet[]
+    >`SELECT * FROM pets WHERE id_user = ${userId} ORDER BY id_pet`;
 
     if (rows.length === 0) {
       return NextResponse.json(

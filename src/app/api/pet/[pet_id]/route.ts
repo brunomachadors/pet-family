@@ -1,4 +1,4 @@
-import { PetType } from '@/app/utils/types';
+import { TPet } from '@/app/types/types';
 import { sql } from '@vercel/postgres';
 import { NextResponse } from 'next/server';
 
@@ -15,7 +15,7 @@ export async function GET(request: Request) {
     }
 
     const { rows } = await sql<
-      PetType[]
+      TPet[]
     >`SELECT * FROM pets WHERE id_pet = ${petId}`;
 
     if (rows.length === 0) {

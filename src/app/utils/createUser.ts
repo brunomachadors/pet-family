@@ -1,27 +1,21 @@
-import { User } from '@/app/utils/types';
+import { User } from '@/app/types/types';
 
-export async function createUser(user: User) {
+export async function createUser(userData: User): Promise<number | null> {
   try {
     const response = await fetch('/api/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.email,
-        externalId: user.id,
-      }),
+      body: JSON.stringify(userData),
     });
 
     if (!response.ok) {
       throw new Error('Erro ao criar usuário');
     }
 
-    const data = await response.json();
-    console.log('Usuário criado com sucesso:', data);
-    return data;
+    const createdUser = await response.json();
+    return createdUser.id_user;
   } catch (error) {
     console.error('Erro ao criar usuário:', error);
     return null;
