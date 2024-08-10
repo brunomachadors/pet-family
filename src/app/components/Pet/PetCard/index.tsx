@@ -33,7 +33,6 @@ const PetCard: React.FC<PetCardProps> = ({ pet, onClick }) => {
             alt={pet.breed ? pet.breed : 'Imagem padrão'}
             width={100}
             height={100}
-            objectFit="contain"
           />
         </PetImageContainer>
         <PetSpecies>{pet.species}</PetSpecies>

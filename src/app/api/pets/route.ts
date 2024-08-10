@@ -86,3 +86,41 @@ export async function PUT(request: Request) {
     );
   }
 }
+
+export async function DELETE(request: Request) {
+  try {
+    const { id_pet } = await request.json();
+
+    if (id_pet === undefined) {
+      return NextResponse.json(
+        { error: 'O campo id_pet é obrigatório' },
+        { status: 400 }
+      );
+    }
+
+    const result = await sql`
+      DELETE FROM pets
+      WHERE id_pet = ${id_pet}
+      RETURNING *`;
+
+    const deletedPet = result.rows[0];
+
+    if (!deletedPet) {
+      return NextResponse.json(
+        { error: 'Pet não encontrado' },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json({
+      message: 'Pet deletado com sucesso',
+      pet: deletedPet,
+    });
+  } catch (error) {
+    console.error('Erro ao deletar o pet no banco de dados:', error);
+    return NextResponse.json(
+      { error: 'Erro ao deletar o pet no banco de dados' },
+      { status: 500 }
+    );
+  }
+}

@@ -22,6 +22,16 @@ export const NavBarLoggedIn = () => {
       </NavDivBlack>
       <NavList>
         <NavItem>
+          <Link href="/pages/mypets">
+            <NavLink>MEUS PETS</NavLink>
+          </Link>
+        </NavItem>
+        <NavItem>
+          <Link href="/pages/addpet">
+            <NavLink>ADICIONAR</NavLink>
+          </Link>
+        </NavItem>
+        <NavItem>
           <SignOutButton>
             <NavLink style={{ cursor: 'pointer' }}>LOGOUT</NavLink>
           </SignOutButton>

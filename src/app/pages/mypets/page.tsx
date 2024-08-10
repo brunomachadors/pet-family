@@ -13,7 +13,7 @@ import {
 import { User } from '@/app/utils/types';
 import PetList from '@/app/components/Pet/PetCardList';
 
-const Home: React.FC = () => {
+const Mypets: React.FC = () => {
   const { user } = useUser();
   const [userExists, setUserExists] = useState<boolean | null>(null);
   const [userId, setUserId] = useState<number | null>(null);
@@ -80,4 +80,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default Mypets;

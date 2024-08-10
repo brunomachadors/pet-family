@@ -20,3 +20,5 @@ export const BackButton = styled.button`
     box-shadow: 0 0 0 3px rgba(69, 71, 75, 0.4); /* Adiciona uma sombra ao focar */
   }
 `;
+
+export const AddButon = styled.button``;

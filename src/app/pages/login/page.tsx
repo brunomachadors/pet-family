@@ -7,7 +7,7 @@ import { LoginPage } from './style';
 function Login() {
   return (
     <LoginPage>
-      <SignIn routing="hash" fallbackRedirectUrl="/pages/home" />
+      <SignIn routing="hash" fallbackRedirectUrl="/pages/mypets" />
     </LoginPage>
   );
 }

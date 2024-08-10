@@ -36,7 +36,9 @@ export default function PetPage() {
     <Container>
       {petData ? <PetDetail pet={petData} /> : <p>Loading...</p>}
 
-      <BackButton onClick={() => router.push('/pages/home')}>VOLTAR</BackButton>
+      <BackButton onClick={() => router.push('/pages/mypets')}>
+        VOLTAR
+      </BackButton>
     </Container>
   );
 }
