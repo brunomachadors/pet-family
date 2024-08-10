@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { useUser } from '@clerk/nextjs';
+import { useRouter } from 'next/navigation'; // Importa o hook useRouter
 import {
   Form,
   Label,
@@ -12,9 +13,11 @@ import {
 } from './style';
 import { TPet } from '@/app/types/types';
 import { verifyUser } from '@/app/utils/verifyUser';
+import { addPet } from '@/app/utils/pets';
 
 const AddPetComponent: React.FC = () => {
   const { user } = useUser();
+  const router = useRouter();
   const [userId, setUserId] = useState<number | null>(null);
   const [name, setName] = useState('');
   const [dob, setDob] = useState('');
@@ -72,34 +75,22 @@ const AddPetComponent: React.FC = () => {
       id_user: userId,
     };
 
-    console.log(JSON.stringify(petData));
+    const { success, message } = await addPet(petData);
 
-    const requestOptions = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(petData),
-    };
+    if (success) {
+      setSuccess(message);
+      setName('');
+      setDob('');
+      setBreed('');
+      setSpecies('');
+      setSex('');
+      setColor('');
 
-    try {
-      const response = await fetch('/api/pets', requestOptions);
-      const result = await response.json();
-
-      if (response.ok) {
-        setSuccess('Pet adicionado com sucesso!');
-        setName('');
-        setDob('');
-        setBreed('');
-        setSpecies('');
-        setSex('');
-        setColor('');
-      } else {
-        setError(result.error || 'Ocorreu um erro ao adicionar o pet.');
-      }
-    } catch (error) {
-      setError('Erro ao se conectar com o servidor.');
-      console.error(error);
+      setTimeout(() => {
+        router.push('/pages/mypets');
+      }, 2000);
+    } else {
+      setError(message);
     }
   };
 
