@@ -10,7 +10,8 @@ import {
   ErrorMessage,
   SuccessMessage,
 } from './style';
-import { PetType } from '@/app/types/types';
+import { TPet } from '@/app/types/types';
+import { verifyUser } from '@/app/utils/verifyUser';
 
 const AddPetComponent: React.FC = () => {
   const { user } = useUser();
@@ -25,38 +26,30 @@ const AddPetComponent: React.FC = () => {
   const [success, setSuccess] = useState('');
 
   useEffect(() => {
-    const fetchUser = async () => {
+    const initializeUser = async () => {
+      if (!user) return;
+
       try {
-        if (!user) return;
+        const userData = {
+          firstName: user.firstName || '',
+          lastName: user.lastName || '',
+          email: user.emailAddresses[0].emailAddress || '',
+          externalId: user.id,
+        };
 
-        const response = await fetch(`/api/users/${user.id}`);
-        const data = await response.json();
+        const verifiedUserId = await verifyUser(userData);
 
-        if (data.error) {
-          const userData = {
-            firstName: user.firstName || '',
-            lastName: user.lastName || '',
-            email: user.emailAddresses[0].emailAddress || '',
-            externalId: user.id,
-          };
-          const createdUserResponse = await fetch('/api/users', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(userData),
-          });
-          const createdUser = await createdUserResponse.json();
-          setUserId(createdUser.id_user);
+        if (verifiedUserId !== null) {
+          setUserId(verifiedUserId);
         } else {
-          setUserId(data.id_user);
+          throw new Error('Erro ao obter o ID do usuário verificado');
         }
       } catch (error) {
-        console.error('Erro ao verificar ou criar usuário:', error);
+        console.error('Erro ao inicializar o usuário:', error);
       }
     };
 
-    fetchUser();
+    initializeUser();
   }, [user]);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -69,7 +62,7 @@ const AddPetComponent: React.FC = () => {
 
     setError('');
 
-    const petData: PetType = {
+    const petData: TPet = {
       name,
       dob: dob || undefined,
       breed: breed || undefined,

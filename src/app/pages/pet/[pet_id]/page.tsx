@@ -7,11 +7,11 @@ import PetDetail from '@/app/components/Pet/PetDetail';
 
 import { useRouter } from 'next/navigation';
 import { BackButton } from '@/app/components/Buttons/style';
-import { PetType } from '@/app/types/types';
+import { TPet } from '@/app/types/types';
 
 export default function PetPage() {
   const { pet_id } = useParams();
-  const [petData, setPetData] = useState<PetType | null>(null);
+  const [petData, setPetData] = useState<TPet | null>(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -23,7 +23,7 @@ export default function PetPage() {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        const data: PetType = await response.json();
+        const data: TPet = await response.json();
         setPetData(data);
       } catch (error) {
         console.error('Erro ao buscar os dados do pet:', error);

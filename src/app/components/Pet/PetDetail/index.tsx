@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { PetType } from '@/app/types/types';
+import { TPet } from '@/app/types/types';
 import { Divider, PetDetailContainer, PetDetailHeader } from './style';
 import PetDetailInfoComponent from '../Info';
 
@@ -12,7 +12,7 @@ import PetDetailWeighComponent from '../Weigh';
 import PetDetailHealthComponent from '../Health';
 
 type PetDetailProps = {
-  pet: PetType;
+  pet: TPet;
 };
 
 const PetDetail: React.FC<PetDetailProps> = ({ pet }) => {

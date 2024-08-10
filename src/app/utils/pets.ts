@@ -1,7 +1,7 @@
-import { PetType } from '../types/types';
+import { TPet } from '../types/types';
 
 export async function addPet(
-  petData: PetType
+  petData: TPet
 ): Promise<{ success: boolean; message: string }> {
   try {
     const response = await fetch('/api/pets', {

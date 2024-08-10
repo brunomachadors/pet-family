@@ -11,11 +11,11 @@ import {
 } from './style';
 
 import { breedImageMap, defaultImageUrl } from '@/app/assets/imageLinks';
-import { PetType } from '@/app/types/types';
+import { TPet } from '@/app/types/types';
 
 type PetCardProps = {
-  pet: PetType;
-  onClick: (pet: PetType) => void;
+  pet: TPet;
+  onClick: (pet: TPet) => void;
 };
 
 const PetCard: React.FC<PetCardProps> = ({ pet, onClick }) => {

@@ -6,7 +6,7 @@ export type User = {
   externalId: string;
 };
 
-export type PetType = {
+export type TPet = {
   id_pet?: number;
   name: string;
   dob?: string;

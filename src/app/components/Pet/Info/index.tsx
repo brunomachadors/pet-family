@@ -8,10 +8,10 @@ import {
   PetDetailInfoValue,
   DetailsContainer,
 } from './style';
-import { PetType } from '@/app/types/types';
+import { TPet } from '@/app/types/types';
 
 type PetDetailInfoProps = {
-  pet: PetType;
+  pet: TPet;
 };
 
 const PetDetailInfoComponent: React.FC<PetDetailInfoProps> = ({ pet }) => {

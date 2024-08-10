@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
 import PetCard from '../PetCard';
-import { PetType } from '@/app/types/types';
+import { TPet } from '@/app/types/types';
 
 const PetListContainer = styled.div`
   display: flex;
@@ -17,7 +17,7 @@ type PetListProps = {
 };
 
 const PetList: React.FC<PetListProps> = ({ userId }) => {
-  const [pets, setPets] = useState<PetType[]>([]);
+  const [pets, setPets] = useState<TPet[]>([]);
   const router = useRouter();
 
   useEffect(() => {
@@ -41,7 +41,7 @@ const PetList: React.FC<PetListProps> = ({ userId }) => {
     fetchPets();
   }, [userId]);
 
-  const handleCardClick = (pet: PetType) => {
+  const handleCardClick = (pet: TPet) => {
     router.push(`/pages/pet/${pet.id_pet}`);
   };
 
