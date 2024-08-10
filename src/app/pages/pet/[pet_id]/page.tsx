@@ -4,10 +4,10 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { Container } from './style';
 import PetDetail from '@/app/components/Pet/PetDetail';
-
 import { useRouter } from 'next/navigation';
 import { BackButton } from '@/app/components/Buttons/style';
 import { TPet } from '@/app/types/types';
+import RemovePetButton from '@/app/components/Pet/Remove';
 
 export default function PetPage() {
   const { pet_id } = useParams();
@@ -36,6 +36,8 @@ export default function PetPage() {
   return (
     <Container>
       {petData ? <PetDetail pet={petData} /> : <p>Loading...</p>}
+
+      <RemovePetButton petId={parseInt(pet_id as string, 10)} />
 
       <BackButton onClick={() => router.push('/pages/mypets')}>
         VOLTAR
