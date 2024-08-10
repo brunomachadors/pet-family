@@ -1,4 +1,4 @@
-import { PetType } from '@/app/utils/types';
+import { PetType } from '@/app/types/types';
 import { sql } from '@vercel/postgres';
 import { NextResponse } from 'next/server';
 

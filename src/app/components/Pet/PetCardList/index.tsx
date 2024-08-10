@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
 import PetCard from '../PetCard';
-import { PetType } from '@/app/utils/types';
+import { PetType } from '@/app/types/types';
 
 const PetListContainer = styled.div`
   display: flex;

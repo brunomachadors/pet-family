@@ -9,8 +9,9 @@ import {
   PetSpecies,
   PetImageContainer,
 } from './style';
-import { PetType } from '@/app/utils/types';
+
 import { breedImageMap, defaultImageUrl } from '@/app/assets/imageLinks';
+import { PetType } from '@/app/types/types';
 
 type PetCardProps = {
   pet: PetType;

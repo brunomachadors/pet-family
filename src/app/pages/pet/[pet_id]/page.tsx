@@ -1,20 +1,21 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'next/navigation'; // Para obter os parâmetros da URL
+import { useParams } from 'next/navigation';
 import { Container } from './style';
 import PetDetail from '@/app/components/Pet/PetDetail';
-import { PetType } from '@/app/utils/types';
-import { useRouter } from 'next/navigation'; // Corrigido para usar o hook correto do Next.js
-import { BackButton } from '@/app/components/Buttons/style'; // Importe o botão estilizado
+
+import { useRouter } from 'next/navigation';
+import { BackButton } from '@/app/components/Buttons/style';
+import { PetType } from '@/app/types/types';
 
 export default function PetPage() {
-  const { pet_id } = useParams(); // Obtém o parâmetro da URL
+  const { pet_id } = useParams();
   const [petData, setPetData] = useState<PetType | null>(null);
-  const router = useRouter(); // Inicializa useRouter
+  const router = useRouter();
 
   useEffect(() => {
-    if (!pet_id) return; // Não faz nada se pet_id não estiver disponível
+    if (!pet_id) return;
 
     const fetchPet = async () => {
       try {

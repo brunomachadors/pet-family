@@ -10,17 +10,7 @@ import {
   ErrorMessage,
   SuccessMessage,
 } from './style';
-
-export type PetType = {
-  id_pet?: number;
-  name: string;
-  dob?: string;
-  breed?: string;
-  species: string;
-  sex?: string;
-  color?: string;
-  id_user: number;
-};
+import { PetType } from '@/app/types/types';
 
 const AddPetComponent: React.FC = () => {
   const { user } = useUser();

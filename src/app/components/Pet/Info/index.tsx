@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PetType } from '@/app/utils/types';
+
 import {
   InfoTitle,
   LineContainer,
@@ -8,6 +8,7 @@ import {
   PetDetailInfoValue,
   DetailsContainer,
 } from './style';
+import { PetType } from '@/app/types/types';
 
 type PetDetailInfoProps = {
   pet: PetType;
