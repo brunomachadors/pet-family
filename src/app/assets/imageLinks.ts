@@ -29,6 +29,8 @@ export const breedImageMap: Record<string, string> = {
     'https://res.cloudinary.com/dtglidvcw/image/upload/v1723398758/PET%20FAMILTY/borddercollie.png',
   Rafeiro:
     'https://res.cloudinary.com/dtglidvcw/image/upload/v1723398758/PET%20FAMILTY/borddercollie.png',
+  Boxer:
+    'https://res.cloudinary.com/dtglidvcw/image/upload/v1723400397/PET%20FAMILTY/boxer.png',
 };
 
 export const defaultImageUrl =
