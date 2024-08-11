@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import styled from 'styled-components';
 
 export const BackButton = styled.button`
@@ -21,4 +22,24 @@ export const BackButton = styled.button`
   }
 `;
 
-export const AddButon = styled.button``;
+export const ClickableImage = styled(Image)`
+  cursor: pointer;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+`;
+
+export const RedirectButton = styled.button`
+  border: 2px solid #2c3e50;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #7f8c8d;
+    color: white;
+  }
+`;

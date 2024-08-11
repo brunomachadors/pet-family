@@ -17,7 +17,9 @@ export const Input = styled.input`
   font-size: 1rem;
   margin-bottom: 20px;
   border: 1px solid #ddd;
-  border-radius: 4px;
+  border-radius: 8px; /* Arredondar os cantos */
+  width: 100%;
+  max-width: 500px; /* Ajusta a largura máxima conforme necessário */
 `;
 
 export const Select = styled.select`
@@ -25,7 +27,27 @@ export const Select = styled.select`
   font-size: 1rem;
   margin-bottom: 20px;
   border: 1px solid #ddd;
-  border-radius: 4px;
+  border-radius: 8px; /* Arredondar os cantos */
+  width: 100%;
+  max-width: 500px; /* Ajusta a largura máxima conforme necessário */
+`;
+
+export const RadioContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+`;
+
+export const RadioLabel = styled.label`
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  font-size: 1rem;
+  color: #45474b;
+`;
+
+export const Radio = styled.input`
+  margin-right: 5px;
 `;
 
 export const Button = styled.button`
@@ -34,7 +56,7 @@ export const Button = styled.button`
   color: white;
   background-color: #45474b;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px; /* Arredondar os cantos */
   cursor: pointer;
 
   &:hover {

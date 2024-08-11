@@ -7,13 +7,16 @@ import {
   Label,
   Input,
   Select,
+  RadioContainer,
+  RadioLabel,
+  Radio,
   Button,
   ErrorMessage,
-  SuccessMessage,
 } from './style';
 import { TPet } from '@/app/types/types';
 import { verifyUser } from '@/app/utils/verifyUser';
 import { addPet } from '@/app/utils/pets';
+import ConfirmAddModal from '../../Modal/ConfirmAdd';
 
 const AddPetComponent: React.FC = () => {
   const { user } = useUser();
@@ -26,7 +29,8 @@ const AddPetComponent: React.FC = () => {
   const [sex, setSex] = useState('');
   const [color, setColor] = useState('');
   const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
+  const [success, setSuccess] = useState(false);
+  const [petId, setPetId] = useState<number | null>(null);
 
   useEffect(() => {
     const initializeUser = async () => {
@@ -55,6 +59,10 @@ const AddPetComponent: React.FC = () => {
     initializeUser();
   }, [user]);
 
+  const handleSexChange = (value: string) => {
+    setSex(value);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -70,27 +78,39 @@ const AddPetComponent: React.FC = () => {
       dob: dob || undefined,
       breed: breed || undefined,
       species,
-      sex: sex || undefined,
+      sex,
       color: color || undefined,
       id_user: userId,
     };
 
-    const { success, message } = await addPet(petData);
+    const response = await addPet(petData);
 
-    if (success) {
-      setSuccess(message);
+    if (response.success) {
+      setSuccess(true);
+      setPetId(response.petId ?? null);
       setName('');
       setDob('');
       setBreed('');
       setSpecies('');
       setSex('');
       setColor('');
-
-      setTimeout(() => {
-        router.push('/pages/mypets');
-      }, 2000);
     } else {
-      setError(message);
+      setError(response.message);
+    }
+  };
+
+  const handleCloseModal = () => {
+    setSuccess(false);
+    setPetId(null);
+  };
+
+  const handleGoToMyPets = () => {
+    router.push('/pages/mypets');
+  };
+
+  const handleGoToPetDetails = () => {
+    if (petId) {
+      router.push(`/pages/pet/${petId}`);
     }
   };
 
@@ -99,52 +119,84 @@ const AddPetComponent: React.FC = () => {
   }
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Label>Nome do Pet</Label>
-      <Input
-        type="text"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        required
-      />
+    <>
+      <Form onSubmit={handleSubmit}>
+        <Label>Nome do Pet</Label>
+        <Input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
 
-      <Label>Data de Nascimento</Label>
-      <Input type="date" value={dob} onChange={(e) => setDob(e.target.value)} />
+        <Label>Data de Nascimento</Label>
+        <Input
+          type="date"
+          value={dob}
+          onChange={(e) => setDob(e.target.value)}
+        />
 
-      <Label>Raça (Opcional)</Label>
-      <Input
-        type="text"
-        value={breed}
-        onChange={(e) => setBreed(e.target.value)}
-      />
+        <Label>Raça (Opcional)</Label>
+        <Input
+          type="text"
+          value={breed}
+          onChange={(e) => setBreed(e.target.value)}
+        />
 
-      <Label>Espécie</Label>
-      <Input
-        type="text"
-        value={species}
-        onChange={(e) => setSpecies(e.target.value)}
-        required
-      />
+        <Label>Espécie</Label>
+        <Select
+          value={species}
+          onChange={(e) => setSpecies(e.target.value)}
+          required
+        >
+          <option value="">Selecione a espécie</option>
+          <option value="Cachorro">Cachorro</option>
+          <option value="Gato">Gato</option>
+          <option value="Pássaro">Pássaro</option>
+          <option value="Peixe">Peixe</option>
+          <option value="Hamster">Hamster</option>
+          <option value="Coelho">Coelho</option>
+          {/* Adicione mais espécies conforme necessário */}
+        </Select>
 
-      <Label>Sexo</Label>
-      <Select value={sex} onChange={(e) => setSex(e.target.value)}>
-        <option value="">Selecione o sexo</option>
-        <option value="M">Macho</option>
-        <option value="F">Fêmea</option>
-      </Select>
+        <Label>Sexo</Label>
+        <RadioContainer>
+          <RadioLabel>
+            <Radio
+              type="radio"
+              name="sex"
+              value="M"
+              checked={sex === 'M'}
+              onChange={() => handleSexChange('M')}
+            />
+            Macho
+          </RadioLabel>
+          <RadioLabel>
+            <Radio
+              type="radio"
+              name="sex"
+              value="F"
+              checked={sex === 'F'}
+              onChange={() => handleSexChange('F')}
+            />
+            Fêmea
+          </RadioLabel>
+        </RadioContainer>
 
-      <Label>Cor</Label>
-      <Input
-        type="text"
-        value={color}
-        onChange={(e) => setColor(e.target.value)}
-      />
+        <Label>Cor</Label>
+        <Input
+          type="text"
+          value={color}
+          onChange={(e) => setColor(e.target.value)}
+        />
 
-      {error && <ErrorMessage>{error}</ErrorMessage>}
-      {success && <SuccessMessage>{success}</SuccessMessage>}
+        {error && <ErrorMessage>{error}</ErrorMessage>}
 
-      <Button type="submit">Adicionar Pet</Button>
-    </Form>
+        <Button type="submit">Adicionar Pet</Button>
+      </Form>
+
+      {success && petId !== null && <ConfirmAddModal petId={petId} />}
+    </>
   );
 };
 

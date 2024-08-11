@@ -2,7 +2,7 @@ import { TPet } from '../types/types';
 
 export async function addPet(
   petData: TPet
-): Promise<{ success: boolean; message: string }> {
+): Promise<{ success: boolean; message: string; petId?: number }> {
   try {
     const response = await fetch('/api/pet', {
       method: 'POST',
@@ -15,7 +15,11 @@ export async function addPet(
     const result = await response.json();
 
     if (response.ok) {
-      return { success: true, message: 'Pet adicionado com sucesso!' };
+      return {
+        success: true,
+        message: 'Pet adicionado com sucesso!',
+        petId: result.id_pet,
+      };
     } else {
       return {
         success: false,
