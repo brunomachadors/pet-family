@@ -29,6 +29,7 @@ const PetDetail: React.FC<PetDetailProps> = ({ pet }) => {
           alt={pet.breed ? pet.breed : 'Imagem padrão'}
           width={100}
           height={100}
+          priority
         />
       </PetImageContainer>
       <PetDetailInfoComponent pet={pet}></PetDetailInfoComponent>

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import {
   InfoTitle,
   LineContainer,
@@ -26,7 +25,7 @@ const PetDetailInfoComponent: React.FC<PetDetailInfoProps> = ({ pet }) => {
       <InfoTitle onClick={toggleExpand}>
         Info {isExpanded ? '▲' : '▼'}
       </InfoTitle>
-      <DetailsContainer isVisible={isExpanded}>
+      <DetailsContainer $isVisible={isExpanded}>
         <LineContainer>
           <PetDetailInfoFieldName>Espécie:</PetDetailInfoFieldName>
           <PetDetailInfoValue>
