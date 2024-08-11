@@ -127,8 +127,9 @@ Consulte nossa [documentação de implantação do Next.js](https://nextjs.org/d
 
 ## Desenvolvedores
 
-- **Juliana Lous** - Product Designer
+- **Bruno Machado** - Founder/Desenvolvedor
+- **Pablo Machado** - DBA/Architect
+- **Juliana Louis** - Product Designer
 - **Aline Gorga** - Product Manager
-- **Bruno Machado** - Desenvolvedor
-- **Pablo Machado** - Desenvolvedor
+
 
