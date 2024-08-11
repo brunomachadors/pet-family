@@ -15,6 +15,7 @@ import { verifyUser } from '@/app/utils/verifyUser';
 
 import { useRouter } from 'next/navigation';
 import { AddPetButton } from '@/app/components/Buttons';
+import AuthGuard from '@/app/components/AuthGuard';
 
 const Mypets: React.FC = () => {
   const { user } = useUser();
@@ -41,32 +42,28 @@ const Mypets: React.FC = () => {
     }
   }, [user]);
 
-  const handleAddPetClick = () => {
-    router.push('/pages/addpet');
-  };
-
-  if (!user) {
-    return <div>Loading...</div>;
-  }
-
   return (
-    <Container>
-      <Header>
-        <HeaderTitle>
-          Bem-vindo{user.firstName ? ', ' + user.firstName : ''}!
-        </HeaderTitle>
-        <HeaderParagraph>Aqui estão todos os seus pets:</HeaderParagraph>
-      </Header>
-      <MainContent>
-        <FeatureSection>{userId && <PetList userId={userId} />}</FeatureSection>
-        <AddPetButton />
-        <ContactSection>
-          <h2>Entre em Contato</h2>
-          <p>Se tiver alguma dúvida ou sugestão, entre em contato conosco!</p>
-          <a href="/contact">Contato</a>
-        </ContactSection>
-      </MainContent>
-    </Container>
+    <AuthGuard>
+      <Container>
+        <Header>
+          <HeaderTitle>
+            Bem-vindo{user?.firstName ? ', ' + user.firstName : ''}!
+          </HeaderTitle>
+          <HeaderParagraph>Aqui estão todos os seus pets:</HeaderParagraph>
+        </Header>
+        <MainContent>
+          <FeatureSection>
+            {userId && <PetList userId={userId} />}
+          </FeatureSection>
+          <AddPetButton />
+          <ContactSection>
+            <h2>Entre em Contato</h2>
+            <p>Se tiver alguma dúvida ou sugestão, entre em contato conosco!</p>
+            <a href="/contact">Contato</a>
+          </ContactSection>
+        </MainContent>
+      </Container>
+    </AuthGuard>
   );
 };
 

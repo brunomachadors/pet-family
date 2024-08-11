@@ -5,22 +5,29 @@
   --border-radius: 12px;
   --font-sans: 'Roboto', sans-serif;
   --font-mono: 'Roboto', sans-serif;
+  --foreground-rgb: 0, 0, 0; /* Cor do texto, ajuste conforme necessário */
+  --background-start-rgb: 245, 247, 248; /* Cor cinza clara para o background */
 }
 
 html,
 body {
   height: 100%;
-  width: 100vw;
+  width: 100%;
   margin: 0;
   padding: 0;
   font-family: var(--font-sans); /* Aplicar a fonte Roboto globalmente */
+  box-sizing: border-box; /* Adicionar box-sizing para evitar problemas com padding e bordas */
+  overflow-x: hidden; /* Prevenir o overflow horizontal, que pode causar deslocamento */
 }
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: rgb(var(--background-start-rgb));
-}
-
-a {
-  text-decoration: none;
+  background-color: rgb(
+    var(--background-start-rgb)
+  ); /* Aplicar a cor cinza clara ao fundo */
+  display: flex; /* Usar flexbox para layout de coluna */
+  flex-direction: column; /* Organizar o conteúdo em coluna */
+  justify-content: flex-start; /* Alinhar o conteúdo ao topo da página */
+  align-items: center; /* Centralizar horizontalmente o conteúdo */
+  min-height: 100vh; /* Garantir que o body ocupe toda a altura da viewport */
 }

@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import { BackButton } from '@/app/components/Buttons/style';
 import { TPet } from '@/app/types/types';
 import RemovePetButton from '@/app/components/Pet/Remove';
+import AuthGuard from '@/app/components/AuthGuard';
 
 export default function PetPage() {
   const { pet_id } = useParams();
@@ -34,14 +35,16 @@ export default function PetPage() {
   }, [pet_id]);
 
   return (
-    <Container>
-      {petData ? <PetDetail pet={petData} /> : <p>Loading...</p>}
+    <AuthGuard>
+      <Container>
+        {petData ? <PetDetail pet={petData} /> : <p>Loading...</p>}
 
-      <RemovePetButton petId={parseInt(pet_id as string, 10)} />
+        <RemovePetButton petId={parseInt(pet_id as string, 10)} />
 
-      <BackButton onClick={() => router.push('/pages/mypets')}>
-        VOLTAR
-      </BackButton>
-    </Container>
+        <BackButton onClick={() => router.push('/pages/mypets')}>
+          VOLTAR
+        </BackButton>
+      </Container>
+    </AuthGuard>
   );
 }

@@ -20,7 +20,7 @@ function PetDetailHealthComponent() {
       <InfoTitle onClick={toggleExpand}>
         Saúde {isExpanded ? '▲' : '▼'}
       </InfoTitle>
-      <DetailsContainer isVisible={isExpanded}>
+      <DetailsContainer $isVisible={isExpanded}>
         <LineContainer>
           <PetDetailFieldName>Vacinação:</PetDetailFieldName>
           <PetDetailValue>Em dia</PetDetailValue>

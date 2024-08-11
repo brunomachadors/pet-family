@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 
 interface DetailsContainerProps {
-  isVisible: boolean;
+  $isVisible: boolean; // Usando o prefixo $ para evitar problemas com o DOM
 }
 
 export const DetailsContainer = styled.div<DetailsContainerProps>`
-  display: ${({ isVisible }) => (isVisible ? 'flex' : 'none')};
+  display: ${({ $isVisible }) => ($isVisible ? 'flex' : 'none')};
   flex-direction: column;
   transition: max-height 0.3s ease;
   overflow: hidden;
-  max-height: ${({ isVisible }) => (isVisible ? '500px' : '0')};
+  max-height: ${({ $isVisible }) => ($isVisible ? '500px' : '0')};
   align-items: center;
 `;
 

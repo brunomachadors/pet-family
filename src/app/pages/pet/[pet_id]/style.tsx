@@ -7,7 +7,16 @@ export const Container = styled.div`
   font-family: Arial, sans-serif;
   max-width: 100vw;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   background-color: #f5f7f8;
   box-sizing: border-box;
+  margin-top: 20%;
+
+  @media (max-width: 768px) {
+    margin-top: 15%;
+  }
+
+  @media (max-width: 480px) {
+    margin-top: 10%;
+  }
 `;

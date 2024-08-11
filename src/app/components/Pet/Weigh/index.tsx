@@ -14,12 +14,13 @@ function PetDetailWeighComponent() {
   const toggleExpand = () => {
     setIsExpanded(!isExpanded);
   };
+
   return (
     <PetDetailWeigh>
       <InfoTitle onClick={toggleExpand}>
         Peso e Altura {isExpanded ? '▲' : '▼'}
       </InfoTitle>
-      <DetailsContainer isVisible={isExpanded}>
+      <DetailsContainer $isVisible={isExpanded}>
         <LineContainer>
           <PetDetailFieldName>Peso:</PetDetailFieldName>
           <PetDetailValue>Pesado</PetDetailValue>
