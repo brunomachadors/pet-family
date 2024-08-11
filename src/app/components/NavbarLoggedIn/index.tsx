@@ -27,11 +27,6 @@ export const NavBarLoggedIn = () => {
           </Link>
         </NavItem>
         <NavItem>
-          <Link href="/pages/addpet">
-            <NavLink>ADICIONAR</NavLink>
-          </Link>
-        </NavItem>
-        <NavItem>
           <SignOutButton>
             <NavLink style={{ cursor: 'pointer' }}>LOGOUT</NavLink>
           </SignOutButton>

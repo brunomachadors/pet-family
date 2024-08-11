@@ -7,7 +7,7 @@ export const Container = styled.div`
   font-family: Arial, sans-serif;
   max-width: 100vw;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   background-color: #f5f7f8;
-  padding: 10%;
+  box-sizing: border-box;
 `;
