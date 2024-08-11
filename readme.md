@@ -8,7 +8,7 @@ Bem-vindo ao Pet Family! Este site será o seu melhor amigo para administrar a v
 
 ## Descrição
 
-O Pet Family é um site dedicado a ajudar os donos de pets a manterem todas as informações importantes sobre seus animais de estimação em um só lugar. O site oferece funcionalidades como:
+O Pet Family é um site dedicado a ajudar os donos de pets a manterem todas as informações importantes sobre seus animais de estimação em um só lugar. O site oferecerá funcionalidades como:
 
 - Registro de histórico de vacinas e tratamentos
 - Contatos de veterinários
@@ -19,29 +19,29 @@ O Pet Family é um site dedicado a ajudar os donos de pets a manterem todas as i
 
 ## Funcionalidades
 
-1. **Cadastro de Pets**:
+### Implementadas
 
-   - Registre seu pet com detalhes como nome, espécie, raça, data de nascimento, etc.
-   - Receba dicas e informações personalizadas com base na raça e espécie do seu pet.
+- [x] **Cadastro de Pets**:
+  - Registre seu pet com detalhes como nome, espécie, raça, data de nascimento, etc.
+  - Receba dicas e informações personalizadas com base na raça e espécie do seu pet.
 
-2. **Histórico de Vacinas e Tratamentos**:
+### Futuras
 
-   - Mantenha um registro detalhado das vacinas e tratamentos do seu pet.
-   - Receba notificações sobre vacinas e consultas futuras.
+- [ ] **Histórico de Vacinas e Tratamentos**:
+  - Mantenha um registro detalhado das vacinas e tratamentos do seu pet.
+  - Receba notificações sobre vacinas e consultas futuras.
 
-3. **Contatos Veterinários**:
+- [ ] **Contatos Veterinários**:
+  - Adicione e gerencie contatos de veterinários.
+  - Acesse informações de contato rapidamente em caso de emergência.
 
-   - Adicione e gerencie contatos de veterinários.
-   - Acesse informações de contato rapidamente em caso de emergência.
+- [ ] **Localizações Pet-Friendly**:
+  - Encontre lugares como parques, restaurantes e lojas que são pet-friendly.
+  - Veja avaliações e recomendações de outros usuários.
 
-4. **Localizações Pet-Friendly**:
-
-   - Encontre lugares como parques, restaurantes e lojas que são pet-friendly.
-   - Veja avaliações e recomendações de outros usuários.
-
-5. **Cupons de Desconto**:
-   - Acesse cupons de desconto em lojas parceiras.
-   - Economize em produtos e serviços para o seu pet.
+- [ ] **Cupons de Desconto**:
+  - Acesse cupons de desconto em lojas parceiras.
+  - Economize em produtos e serviços para o seu pet.
 
 ## Estrutura do Projeto
 
@@ -49,13 +49,18 @@ O Pet Family é um site dedicado a ajudar os donos de pets a manterem todas as i
 
   - Desenvolvido com React e Next.js.
   - Estilizado com Styled Components para uma UI moderna e responsiva.
+  - Imagens hospedadas no Cloudinary para otimização e desempenho.
+  - Autenticação de usuários implementada com [Clerk](https://clerk.dev).
 
 - **Backend**:
 
-  - Em definição, pode incluir tecnologias como Node.js, Express, e MongoDB.
+  - Utiliza o Next.js API Routes para criação de endpoints de backend.
+  - PostgreSQL como banco de dados relacional.
+  - Implementação baseada no Next.js Server, sem uso de Express.
 
 - **Banco de Dados**:
-  - Em definição, mas pode incluir opções como MongoDB ou PostgreSQL para armazenamento de dados.
+
+  - PostgreSQL para armazenamento de dados.
 
 ## Instruções de Instalação
 
@@ -75,7 +80,7 @@ bun dev
 
 Abra [http://localhost:3000](http://localhost:3000) no seu navegador para ver o resultado.
 
-Você pode começar a editar a página modificando `src/pages/index.tsx`. A página é atualizada automaticamente conforme você edita o arquivo.
+Você pode começar a editar a página modificando `src/app/page.tsx`. A página é atualizada automaticamente conforme você edita o arquivo.
 
 ### Clonar o Repositório e Instalar Dependências
 
@@ -112,17 +117,18 @@ Consulte nossa [documentação de implantação do Next.js](https://nextjs.org/d
   - React
   - Styled Components
   - Axios (para requisições HTTP)
+  - Cloudinary (para hospedagem de imagens)
+  - [Clerk](https://clerk.dev) (para autenticação de usuários)
 
-- **Backend** (em definição):
-  - Node.js
-  - Express
-  - MongoDB ou PostgreSQL
+- **Backend**:
+
+  - Next.js API Routes
+  - PostgreSQL (banco de dados)
 
 ## Desenvolvedores
 
-- Bruno Machado
-- Pablo Machado
+- **Juliana Lous** - Product Designer
+- **Aline Gorga** - Product Manager
+- **Bruno Machado** - Desenvolvedor
+- **Pablo Machado** - Desenvolvedor
 
-## Licença
-
-Este projeto está licenciado sob a Licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
