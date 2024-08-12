@@ -14,6 +14,8 @@ export const Container = styled.div`
   @media (max-width: 768px) {
     margin-top: 30px;
     padding: 0 1rem;
+    /* Adiciona padding superior e inferior para melhorar o espaçamento */
+    padding: 1rem 1rem;
   }
 `;
 
@@ -30,6 +32,8 @@ export const SocialLinksContainer = styled.div`
   @media (max-width: 768px) {
     gap: 12px;
     padding: 4%;
+    /* Ajusta a largura máxima para dispositivos móveis */
+    max-width: 100%;
   }
 `;
 

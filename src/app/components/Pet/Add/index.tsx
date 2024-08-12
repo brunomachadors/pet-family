@@ -12,12 +12,12 @@ import {
   Button,
   ErrorMessage,
   FormContainer,
-  FieldContainer,
   InputName,
 } from './style';
 import { TPet } from '@/app/types/types';
 import { verifyUser } from '@/app/utils/verifyUser';
 import { addPet } from '@/app/utils/pets';
+import { getDogBreedNames } from '@/app/utils/breeds'; // Importa a função para obter as raças de cachorros
 import ConfirmAddModal from '../../Modal/ConfirmAdd';
 import AuthGuard from '../../AuthGuard';
 
@@ -33,6 +33,7 @@ const AddPetComponent: React.FC = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
   const [petId, setPetId] = useState<number | null>(null);
+  const [breedOptions, setBreedOptions] = useState<string[]>([]); // Estado para armazenar as opções de raças
 
   useEffect(() => {
     const initializeUser = async () => {
@@ -60,6 +61,21 @@ const AddPetComponent: React.FC = () => {
 
     initializeUser();
   }, [user]);
+
+  useEffect(() => {
+    const fetchBreeds = async () => {
+      if (species === 'Cachorro') {
+        const { success, breedNames } = await getDogBreedNames();
+        if (success && breedNames) {
+          setBreedOptions(breedNames);
+        }
+      } else {
+        setBreedOptions([]); // Limpa as opções se a espécie não for "Cachorro"
+      }
+    };
+
+    fetchBreeds();
+  }, [species]);
 
   const handleSexChange = (value: string) => {
     setSex(value);
@@ -118,6 +134,7 @@ const AddPetComponent: React.FC = () => {
             fullWidth
             placeholder="Ex: Batata"
           />
+
           <Label>Espécie</Label>
           <Select
             value={species}
@@ -136,14 +153,36 @@ const AddPetComponent: React.FC = () => {
             <option value="Hamster">Hamster</option>
             <option value="Coelho">Coelho</option>
           </Select>
-          <Label>Raça (Opcional)</Label>
-          <Input
-            type="text"
-            value={breed}
-            onChange={(e) => setBreed(e.target.value)}
-            fullWidth
-            placeholder="Ex: Viralata"
-          />
+
+          {species === 'Cachorro' ? (
+            <>
+              <Label>Raça (Opcional)</Label>
+              <Select
+                value={breed}
+                onChange={(e) => setBreed(e.target.value)}
+                fullWidth
+              >
+                <option value="">Selecione a raça (Opcional)</option>
+                {breedOptions.map((breedName) => (
+                  <option key={breedName} value={breedName}>
+                    {breedName}
+                  </option>
+                ))}
+              </Select>
+            </>
+          ) : (
+            <>
+              <Label>Raça (Opcional)</Label>
+              <Input
+                type="text"
+                value={breed}
+                onChange={(e) => setBreed(e.target.value)}
+                fullWidth
+                placeholder="Ex: Viralata"
+              />
+            </>
+          )}
+
           <Label>Cor</Label>
           <Input
             type="text"
