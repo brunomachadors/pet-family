@@ -32,9 +32,10 @@ export async function POST(request: Request) {
 
     const result = await sql`
       INSERT INTO pets (name, dob, breed, species, sex, color, id_user)
-      VALUES (${name}, ${dob || null}, ${breed || null}, ${species}, ${
-      sex || null
-    }, ${color || null}, ${id_user})
+      VALUES (
+        ${name}, ${dob || null}, ${breed || null}, ${species}, 
+        ${sex || null}, ${color || null}, ${id_user}
+      )
       RETURNING *`;
 
     const newPet = result.rows[0];

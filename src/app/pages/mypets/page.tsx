@@ -13,15 +13,12 @@ import {
 import PetList from '@/app/components/Pet/PetCardList';
 import { verifyUser } from '@/app/utils/verifyUser';
 
-import { useRouter } from 'next/navigation';
 import { AddPetButton } from '@/app/components/Buttons';
 import AuthGuard from '@/app/components/AuthGuard';
 
 const Mypets: React.FC = () => {
   const { user } = useUser();
   const [userId, setUserId] = useState<number | null>(null);
-
-  const router = useRouter();
 
   useEffect(() => {
     if (user) {

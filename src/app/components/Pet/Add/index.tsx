@@ -70,7 +70,7 @@ const AddPetComponent: React.FC = () => {
           setBreedOptions(breedNames);
         }
       } else {
-        setBreedOptions([]); // Limpa as opções se a espécie não for "Cachorro"
+        setBreedOptions([]);
       }
     };
 
@@ -140,7 +140,6 @@ const AddPetComponent: React.FC = () => {
             value={species}
             onChange={(e) => setSpecies(e.target.value)}
             required
-            fullWidth
             className="select-placeholder"
           >
             <option value="" disabled>
@@ -157,12 +156,8 @@ const AddPetComponent: React.FC = () => {
           {species === 'Cachorro' ? (
             <>
               <Label>Raça (Opcional)</Label>
-              <Select
-                value={breed}
-                onChange={(e) => setBreed(e.target.value)}
-                fullWidth
-              >
-                <option value="">Selecione a raça (Opcional)</option>
+              <Select value={breed} onChange={(e) => setBreed(e.target.value)}>
+                <option value="">Selecione a raça</option>
                 {breedOptions.map((breedName) => (
                   <option key={breedName} value={breedName}>
                     {breedName}
@@ -177,7 +172,6 @@ const AddPetComponent: React.FC = () => {
                 type="text"
                 value={breed}
                 onChange={(e) => setBreed(e.target.value)}
-                fullWidth
                 placeholder="Ex: Viralata"
               />
             </>

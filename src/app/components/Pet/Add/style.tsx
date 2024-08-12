@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-// Define o tipo para propriedades adicionais
 interface StyledProps {
   fullWidth?: boolean;
 }
@@ -49,7 +48,7 @@ export const Input = styled.input<StyledProps>`
   margin-bottom: 16px;
   border: 1px solid #45474b;
   border-radius: 8px;
-  width: ${(props) => (props.fullWidth ? '60%' : 'calc(50% - 24px)')};
+  width: ${(props) => (props.fullWidth ? '100%' : 'calc(40% - 24px)')};
   box-sizing: border-box;
   transition: border-color 0.3s ease;
   text-align: center;
@@ -106,7 +105,7 @@ export const Select = styled.select<StyledProps>`
   margin-bottom: 16px;
   border: 1px solid #45474b;
   border-radius: 8px;
-  width: ${(props) => (props.fullWidth ? '50%' : 'calc(100% - 24px)')};
+  width: ${(props) => (props.fullWidth ? '100%' : 'calc(40% - 24px)')};
   box-sizing: border-box;
   transition: border-color 0.3s ease;
   text-align: center;

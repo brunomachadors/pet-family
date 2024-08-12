@@ -1,10 +1,8 @@
 import { sql } from '@vercel/postgres';
 import { NextResponse } from 'next/server';
 
-export async function GET(request: Request) {
+export async function GET() {
   try {
-    console.log('Iniciando consulta à tabela dog_breeds...');
-
     const { rows } = await sql`
       SELECT * FROM dog_breeds
     `;
