@@ -1,10 +1,9 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { Container } from './style';
 import PetDetail from '@/app/components/Pet/PetDetail';
-import { useRouter } from 'next/navigation';
 import { BackButton } from '@/app/components/Buttons/style';
 import { TPet } from '@/app/types/types';
 import RemovePetButton from '@/app/components/Pet/Remove';
