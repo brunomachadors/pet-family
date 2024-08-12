@@ -27,7 +27,7 @@ export const NavBar = () => {
           </Link>
         </NavItem>
         <NavItem>
-          <Link href="/about" passHref>
+          <Link href="/pages/about" passHref>
             <NavLink>SOBRE</NavLink>
           </Link>
         </NavItem>

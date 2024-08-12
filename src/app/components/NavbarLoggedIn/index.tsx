@@ -1,8 +1,8 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
-import { SignOutButton } from '@clerk/nextjs';
+import { useClerk } from '@clerk/nextjs';
 import {
   NavContainer,
   NavDivBlack,
@@ -12,27 +12,50 @@ import {
   NavList,
 } from './style';
 
+import ModalLogout from '../Modal/Logout';
+
 export const NavBarLoggedIn = () => {
+  const [showModal, setShowModal] = useState(false);
+  const { signOut } = useClerk();
+
+  const openModal = () => setShowModal(true);
+  const closeModal = () => setShowModal(false);
+
+  const handleSignOut = () => {
+    signOut({ redirectUrl: '/' });
+  };
+
   return (
-    <NavContainer>
-      <NavDivBlack>
-        <Link href="/" passHref>
-          <NavLinkBlack>PET FAMILY</NavLinkBlack>
-        </Link>
-      </NavDivBlack>
-      <NavList>
-        <NavItem>
-          <Link href="/pages/mypets">
-            <NavLink>MEUS PETS</NavLink>
+    <>
+      <NavContainer>
+        <NavDivBlack>
+          <Link href="/" passHref>
+            <NavLinkBlack>PET FAMILY</NavLinkBlack>
           </Link>
-        </NavItem>
-        <NavItem>
-          <SignOutButton>
-            <NavLink style={{ cursor: 'pointer' }}>LOGOUT</NavLink>
-          </SignOutButton>
-        </NavItem>
-      </NavList>
-    </NavContainer>
+        </NavDivBlack>
+        <NavList>
+          <NavItem>
+            <Link href="/pages/mypets">
+              <NavLink>MEUS PETS</NavLink>
+            </Link>
+          </NavItem>
+          <NavItem>
+            <Link href="/pages/about">
+              <NavLink>SOBRE</NavLink>
+            </Link>
+          </NavItem>
+          <NavItem>
+            <NavLink style={{ cursor: 'pointer' }} onClick={openModal}>
+              LOGOUT
+            </NavLink>
+          </NavItem>
+        </NavList>
+      </NavContainer>
+
+      {showModal && (
+        <ModalLogout closeModal={closeModal} handleSignOut={handleSignOut} />
+      )}
+    </>
   );
 };
 
