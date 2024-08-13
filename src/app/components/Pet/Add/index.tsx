@@ -1,25 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { useUser } from '@clerk/nextjs';
 
-import {
-  Form,
-  Label,
-  Input,
-  Select,
-  RadioContainer,
-  RadioLabel,
-  Radio,
-  Button,
-  ErrorMessage,
-  FormContainer,
-  InputName,
-} from './style';
+import { Form, Button, ErrorMessage, FormContainer } from './style';
 import { TPet } from '@/app/types/types';
 import { verifyUser } from '@/app/utils/verifyUser';
 import { addPet } from '@/app/utils/pets';
 import { getDogBreedNames } from '@/app/utils/breeds'; // Importa a função para obter as raças de cachorros
 import ConfirmAddModal from '../../Modal/ConfirmAdd';
 import AuthGuard from '../../AuthGuard';
+import { BreedSelect, SpeciesSelect } from '../../Select';
+import {
+  BreedNameInput,
+  ColorInput,
+  DobInput,
+  PetNameInput,
+} from '../../Input';
+import { SexRadioGroup } from '../../Radio';
 
 const AddPetComponent: React.FC = () => {
   const { user } = useUser();
@@ -125,99 +121,24 @@ const AddPetComponent: React.FC = () => {
     <AuthGuard>
       <FormContainer>
         <Form onSubmit={handleSubmit}>
-          <Label>Nome do Pet</Label>
-          <InputName
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-            fullWidth
-            placeholder="Ex: Batata"
-          />
+          <PetNameInput name={name} onNameChange={setName} />
 
-          <Label>Espécie</Label>
-          <Select
-            value={species}
-            onChange={(e) => setSpecies(e.target.value)}
-            required
-            className="select-placeholder"
-          >
-            <option value="" disabled>
-              Selecione a espécie
-            </option>
-            <option value="Cachorro">Cachorro</option>
-            <option value="Gato">Gato</option>
-            <option value="Pássaro">Pássaro</option>
-            <option value="Peixe">Peixe</option>
-            <option value="Hamster">Hamster</option>
-            <option value="Coelho">Coelho</option>
-          </Select>
-
+          <SpeciesSelect species={species} onSpeciesChange={setSpecies} />
           {species === 'Cachorro' ? (
-            <>
-              <Label>Raça (Opcional)</Label>
-              <Select value={breed} onChange={(e) => setBreed(e.target.value)}>
-                <option value="">Selecione a raça</option>
-                {breedOptions.map((breedName) => (
-                  <option key={breedName} value={breedName}>
-                    {breedName}
-                  </option>
-                ))}
-              </Select>
-            </>
+            <BreedSelect
+              breed={breed}
+              onBreedChange={setBreed}
+              breedOptions={breedOptions}
+            />
           ) : (
-            <>
-              <Label>Raça (Opcional)</Label>
-              <Input
-                type="text"
-                value={breed}
-                onChange={(e) => setBreed(e.target.value)}
-                placeholder="Ex: Viralata"
-              />
-            </>
+            <BreedNameInput breed={breed} onBreedChange={setBreed} />
           )}
 
-          <Label>Cor</Label>
-          <Input
-            type="text"
-            value={color}
-            onChange={(e) => setColor(e.target.value)}
-            placeholder="Ex: Marrom"
-          />
-
-          <Label>Data de Nascimento</Label>
-          <Input
-            type="date"
-            value={dob}
-            onChange={(e) => setDob(e.target.value)}
-          />
-
-          <Label>Sexo</Label>
-          <RadioContainer>
-            <RadioLabel>
-              <Radio
-                type="radio"
-                name="sex"
-                value="M"
-                checked={sex === 'M'}
-                onChange={() => handleSexChange('M')}
-              />
-              Macho
-            </RadioLabel>
-            <RadioLabel>
-              <Radio
-                type="radio"
-                name="sex"
-                value="F"
-                checked={sex === 'F'}
-                onChange={() => handleSexChange('F')}
-              />
-              Fêmea
-            </RadioLabel>
-          </RadioContainer>
+          <ColorInput color={color} onColorChange={setColor} />
+          <DobInput dob={dob} onDobChange={setDob} />
+          <SexRadioGroup sex={sex} onSexChange={handleSexChange} />
 
           {error && <ErrorMessage>{error}</ErrorMessage>}
-
           <Button type="submit">Adicionar Pet</Button>
         </Form>
 

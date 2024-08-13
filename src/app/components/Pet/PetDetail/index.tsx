@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import { TPet } from '@/app/types/types';
 import { Divider, PetDetailContainer, PetDetailHeader } from './style';
 import PetDetailInfoComponent from '../Info';
@@ -16,10 +16,18 @@ type PetDetailProps = {
 };
 
 const PetDetail: React.FC<PetDetailProps> = ({ pet }) => {
+  const [currentPet, setCurrentPet] = useState<TPet>(pet); // Mantenha o estado do pet atualizado
+
   const imageUrl =
     pet.breed && breedImageMap[pet.breed]
       ? breedImageMap[pet.breed]
       : defaultImageUrl;
+
+  // Função que será chamada quando um pet for atualizado
+  const handleUpdatePet = (updatedPet: TPet) => {
+    setCurrentPet(updatedPet); // Atualize o estado com o pet atualizado
+  };
+
   return (
     <PetDetailContainer>
       <PetDetailHeader>{pet.name.toUpperCase()}</PetDetailHeader>
@@ -32,7 +40,7 @@ const PetDetail: React.FC<PetDetailProps> = ({ pet }) => {
           priority
         />
       </PetImageContainer>
-      <PetDetailInfoComponent pet={pet}></PetDetailInfoComponent>
+      <PetDetailInfoComponent pet={currentPet} onUpdatePet={handleUpdatePet} />
       <Divider></Divider>
       <PetDetailWeighComponent></PetDetailWeighComponent>
       <Divider></Divider>
