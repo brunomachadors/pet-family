@@ -26,21 +26,3 @@ export const InfoTitle = styled.h2`
   width: 100%;
   text-align: center;
 `;
-
-export const LineContainer = styled.div`
-  display: flex;
-  width: 100%;
-  gap: 5px;
-  justify-content: center;
-  text-align: center;
-  padding: 10px 0;
-`;
-
-export const PetDetailInfoFieldName = styled.p`
-  font-weight: bold;
-  margin: 0;
-`;
-
-export const PetDetailInfoValue = styled.p`
-  margin: 0;
-`;
