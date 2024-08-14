@@ -64,24 +64,6 @@ O Pet Family é um site dedicado a ajudar os donos de pets a manterem todas as i
 
 ## Instruções de Instalação
 
-### Iniciar o Servidor de Desenvolvimento
-
-Primeiro, execute o servidor de desenvolvimento:
-
-```bash
-npm run dev
-# ou
-yarn dev
-# ou
-pnpm dev
-# ou
-bun dev
-```
-
-Abra [http://localhost:3000](http://localhost:3000) no seu navegador para ver o resultado.
-
-Você pode começar a editar a página modificando `src/app/page.tsx`. A página é atualizada automaticamente conforme você edita o arquivo.
-
 ### Clonar o Repositório e Instalar Dependências
 
 1. **Clone o repositório**:
