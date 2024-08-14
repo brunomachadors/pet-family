@@ -2,10 +2,6 @@
 
 Bem-vindo ao Pet Family! Este site será o seu melhor amigo para administrar a vida do seu pet. Pets têm uma função fundamental e fazem parte das nossas famílias, por isso estamos criando um site que ajude a gerir toda a rotina e cuidados do seu pet.
 
-## Preview
-
-![alt text](/public/image.png)
-
 ## Descrição
 
 O Pet Family é um site dedicado a ajudar os donos de pets a manterem todas as informações importantes sobre seus animais de estimação em um só lugar. O site oferecerá funcionalidades como:
@@ -113,5 +109,9 @@ Consulte nossa [documentação de implantação do Next.js](https://nextjs.org/d
 - **Pablo Machado** - DBA/Architect
 - **Juliana Louis** - Product Designer
 - **Aline Gorga** - Product Manager
+
+## Preview
+
+![alt text](/public/image.png)
 
 
