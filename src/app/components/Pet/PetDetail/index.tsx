@@ -8,7 +8,7 @@ import Image from 'next/image';
 import { breedImageMap, defaultImageUrl } from '@/app/assets/imageLinks';
 import { PetImageContainer } from '../PetCard/style';
 
-import PetDetailWeighComponent from '../Weigh';
+import PetDetailWeighComponent from '../Weight';
 import PetDetailHealthComponent from '../Health';
 
 type PetDetailProps = {
@@ -16,16 +16,15 @@ type PetDetailProps = {
 };
 
 const PetDetail: React.FC<PetDetailProps> = ({ pet }) => {
-  const [currentPet, setCurrentPet] = useState<TPet>(pet); // Mantenha o estado do pet atualizado
+  const [currentPet, setCurrentPet] = useState<TPet>(pet);
 
   const imageUrl =
     pet.breed && breedImageMap[pet.breed]
       ? breedImageMap[pet.breed]
       : defaultImageUrl;
 
-  // Função que será chamada quando um pet for atualizado
   const handleUpdatePet = (updatedPet: TPet) => {
-    setCurrentPet(updatedPet); // Atualize o estado com o pet atualizado
+    setCurrentPet(updatedPet);
   };
 
   return (
@@ -42,7 +41,7 @@ const PetDetail: React.FC<PetDetailProps> = ({ pet }) => {
       </PetImageContainer>
       <PetDetailInfoComponent pet={currentPet} onUpdatePet={handleUpdatePet} />
       <Divider></Divider>
-      <PetDetailWeighComponent></PetDetailWeighComponent>
+      <PetDetailWeighComponent pet={pet}></PetDetailWeighComponent>
       <Divider></Divider>
       <PetDetailHealthComponent></PetDetailHealthComponent>
     </PetDetailContainer>

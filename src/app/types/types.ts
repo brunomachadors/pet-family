@@ -44,3 +44,10 @@ export type TDogBreed = {
   average_cost?: number;
   popularity?: number;
 };
+
+export interface TWeight {
+  id_weight: number;
+  weight: number;
+  date: string;
+  id_pet: number;
+}

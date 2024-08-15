@@ -43,3 +43,26 @@ export const RedirectButton = styled.button`
     color: white;
   }
 `;
+
+export const ExpandButton = styled.button`
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #45474b;
+  color: white;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: inline-block;
+
+  &:hover {
+    background-color: #5c5f63;
+    transform: scale(1.02);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(69, 71, 75, 0.4);
+  }
+`;
