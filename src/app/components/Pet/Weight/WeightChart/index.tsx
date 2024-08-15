@@ -1,4 +1,3 @@
-// WeightChart.tsx
 import React from 'react';
 import { Line } from 'react-chartjs-2';
 import {
@@ -10,9 +9,10 @@ import {
   CategoryScale,
   LinearScale,
   PointElement,
-  TooltipItem,
   ChartOptions,
+  TooltipItem,
 } from 'chart.js';
+import { format, parseISO } from 'date-fns';
 import { InfoSubTitle, StyledChartContainer } from '../style';
 
 ChartJS.register(
@@ -31,8 +31,8 @@ interface WeightChartProps {
 
 export const WeightChart: React.FC<WeightChartProps> = ({ weightData }) => {
   const sortedData = [...weightData].reverse();
-  const labels = sortedData.map((data) =>
-    new Date(data.date).toLocaleDateString()
+  const labels = sortedData.map(
+    (data) => format(parseISO(data.date), 'MMM/yy') // Formata para 'Mês/Ano'
   );
   const weights = sortedData.map((data) => data.weight / 1000);
 
@@ -70,8 +70,7 @@ export const WeightChart: React.FC<WeightChartProps> = ({ weightData }) => {
     scales: {
       x: {
         title: {
-          display: true,
-          text: 'Data',
+          display: false,
         },
         ticks: {
           maxRotation: 45,
