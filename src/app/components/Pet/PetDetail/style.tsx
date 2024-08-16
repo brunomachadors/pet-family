@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
 export const PetDetailContainer = styled.div`
-  width: 30vw;
+  width: 750px;
   border: 2px solid #45474b;
   border-radius: 15px;
+  padding: 20px;
 
   @media (max-width: 1024px) {
     width: 70vw;

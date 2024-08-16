@@ -5,19 +5,15 @@ interface DetailsContainerProps {
 }
 
 interface WeightContainerProps {
-  index: number;
-}
-
-interface WeightDifferenceProps {
-  isGain: boolean;
+  $index: number; // Use $index
 }
 
 export const DetailsContainer = styled.div<DetailsContainerProps>`
   display: ${({ $isVisible }) => ($isVisible ? 'flex' : 'none')};
   flex-direction: column;
-  align-items: center; /* Alinha os itens ao centro */
-  width: 100%; /* Garante que o contêiner ocupe a largura total disponível */
-  overflow: auto; /* Permite que o conteúdo dentro do contêiner role, se necessário */
+  align-items: center;
+  width: 100%;
+  overflow: auto;
 `;
 
 export const PetDetailWeigh = styled.div`
@@ -66,7 +62,7 @@ export const WeightContainer = styled.div<WeightContainerProps>`
   border: 1px solid #ddd;
   padding: 10px;
   border-radius: 5px;
-  background-color: ${({ index }) => (index === 0 ? '#f9f9f9' : '#e0e0e0')};
+  background-color: ${({ $index }) => ($index === 0 ? '#f9f9f9' : '#e0e0e0')};
   margin: 0;
   gap: 10px;
 `;
@@ -95,25 +91,6 @@ export const PetWeightDate = styled.p`
   justify-content: center;
 `;
 
-interface WeightDifferenceProps {
-  isGain: boolean;
-  difference: number | null;
-}
-
-export const WeightDifference = styled.p<WeightDifferenceProps>`
-  margin: 5px 0 0;
-  font-size: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: ${({ isGain, difference }) =>
-    difference === null || difference === 0
-      ? '#666'
-      : isGain
-      ? 'green'
-      : 'red'};
-  font-weight: bold;
-`;
 export const StyledChartContainer = styled.div`
   width: 90%;
   margin: 0 auto;
