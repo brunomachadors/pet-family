@@ -1,17 +1,10 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import { ClerkProvider } from '@clerk/nextjs';
-import dynamic from 'next/dynamic';
 import './globals.css';
 import NavBarSwitcher from './components/NavbarSwitcher';
 import { Footer } from './components/Footer/style';
-
-const SpeedInsights = dynamic(
-  () => import('@vercel/speed-insights/next').then((mod) => mod.SpeedInsights),
-  {
-    ssr: false,
-  }
-);
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 export const metadata: Metadata = {
   title: 'PET FAMILY',
@@ -42,12 +35,12 @@ export default function RootLayout({
           />
         </head>
         <body>
-          <SpeedInsights />
           <NavBarSwitcher />
           <main>{children}</main>
           <Footer>
             <p>&copy; 2024 PET FAMILY. Todos os direitos reservados.</p>
           </Footer>
+          <SpeedInsights></SpeedInsights>
         </body>
       </html>
     </ClerkProvider>
