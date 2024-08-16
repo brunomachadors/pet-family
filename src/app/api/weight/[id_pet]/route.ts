@@ -34,3 +34,40 @@ export async function GET(request: Request) {
     );
   }
 }
+
+export async function DELETE(request: Request) {
+  try {
+    const url = new URL(request.url);
+    const id_weight = url.pathname.split('/').pop();
+
+    if (!id_weight) {
+      return NextResponse.json(
+        { error: 'ID do peso não fornecido' },
+        { status: 400 }
+      );
+    }
+
+    const result = await sql`
+      DELETE FROM weights
+      WHERE id_weight = ${id_weight}
+      RETURNING *`;
+
+    if (result.rowCount === 0) {
+      return NextResponse.json(
+        { error: 'Peso não encontrado' },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json(
+      { message: 'Peso removido com sucesso' },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error('Erro ao remover o peso do banco de dados:', error);
+    return NextResponse.json(
+      { error: 'Erro ao remover o peso do banco de dados' },
+      { status: 500 }
+    );
+  }
+}

@@ -9,13 +9,17 @@ import {
 interface WeightItemProps {
   weight: { weight: number; date: string };
   previousWeight?: number;
-  index: number; // Adicione o índice aqui
+  index: number;
+  isSelected: boolean;
+  onClick: () => void;
 }
 
 const WeightItem: React.FC<WeightItemProps> = ({
   weight,
   previousWeight,
   index,
+  isSelected,
+  onClick,
 }) => {
   const calculateWeightDifference = (
     currentWeight: number,
@@ -30,9 +34,13 @@ const WeightItem: React.FC<WeightItemProps> = ({
   const isGain = difference !== null && difference > 0;
 
   return (
-    <WeightContainer index={index}>
-      {' '}
-      {/* Passe o índice aqui */}
+    <WeightContainer
+      index={index}
+      onClick={onClick} // Adiciona o evento de clique
+      style={{
+        border: isSelected ? '2px solid #000' : '1px solid #ddd', // Aplica a borda condicional
+      }}
+    >
       <PetDetailValue>{(weight.weight / 1000).toFixed(1)} kg</PetDetailValue>
       {' | '}
       <PetWeightDate>

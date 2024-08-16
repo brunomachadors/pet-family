@@ -2,12 +2,12 @@ import { TWeight } from '../types/types';
 
 export async function addWeight(id_pet: number, weight: number): Promise<void> {
   try {
-    const response = await fetch(`/api/weight/${id_pet}`, {
+    const response = await fetch('/api/weight', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ weight }), // Não é necessário incluir id_pet no corpo, pois já está na URL
+      body: JSON.stringify({ weight, id_pet }),
     });
 
     if (!response.ok) {
@@ -58,3 +58,23 @@ export const formatDate = (dateString: string) => {
   };
   return new Date(dateString).toLocaleDateString(undefined, options);
 };
+export async function removeWeight(id_weight: number): Promise<void> {
+  try {
+    const response = await fetch(`/api/weight/${id_weight}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(
+        `Erro ao remover peso: ${response.statusText}. ${errorText}`
+      );
+    }
+  } catch (error) {
+    console.error('Erro ao chamar a API para remover peso:', error);
+    throw error;
+  }
+}
