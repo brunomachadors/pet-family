@@ -77,7 +77,7 @@ const PetDetailWeighComponent: React.FC<PetDetailWeighComponentProps> = ({
     try {
       await addWeight(id_pet, normalizedWeight);
       console.log('Peso atualizado com sucesso');
-      // Atualiza os pesos após salvar
+
       const updatedWeights = await getWeight(id_pet);
       setWeights(updatedWeights);
       setHasData(updatedWeights.length > 0);
@@ -88,7 +88,6 @@ const PetDetailWeighComponent: React.FC<PetDetailWeighComponentProps> = ({
   };
 
   if (pet.id_pet === undefined) {
-    // Garantir que pet_id não seja undefined
     return <p>ID do pet não está definido.</p>;
   }
 
@@ -110,7 +109,7 @@ const PetDetailWeighComponent: React.FC<PetDetailWeighComponentProps> = ({
                 weights={weights}
                 isExpanded={isWeightHistoryExpanded}
                 onToggleExpand={toggleWeightHistoryExpand}
-                pet_id={pet.id_pet} // pet_id é garantido como number aqui
+                pet_id={pet.id_pet}
                 setWeights={setWeights}
               />
             </ColumnContainer>

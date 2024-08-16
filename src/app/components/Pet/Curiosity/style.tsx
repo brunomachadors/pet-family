@@ -13,7 +13,7 @@ export const DetailsContainer = styled.div<DetailsContainerProps>`
   align-items: center;
 `;
 
-export const PetDetailHealth = styled.div`
+export const PetDetail = styled.div`
   display: flex;
   flex-direction: column;
   align-items: stretch;

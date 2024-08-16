@@ -9,12 +9,14 @@ import {
   CategoryScale,
   LinearScale,
   PointElement,
+  Filler, // Importando o plugin Filler
   ChartOptions,
   TooltipItem,
 } from 'chart.js';
 import { format, parseISO } from 'date-fns';
 import { InfoSubTitle, StyledChartContainer } from '../style';
 
+// Registrando o plugin Filler junto com os outros componentes
 ChartJS.register(
   Title,
   Tooltip,
@@ -22,7 +24,8 @@ ChartJS.register(
   LineElement,
   CategoryScale,
   LinearScale,
-  PointElement
+  PointElement,
+  Filler // Registrando o plugin Filler
 );
 
 interface WeightChartProps {

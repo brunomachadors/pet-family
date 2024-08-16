@@ -1,10 +1,6 @@
 import React from 'react';
-import {
-  PetDetailValue,
-  PetWeightDate,
-  WeightContainer,
-  WeightDifference,
-} from '../style';
+import { PetDetailValue, PetWeightDate, WeightContainer } from '../style';
+import { WeightDifference } from './style';
 
 interface WeightItemProps {
   weight: { weight: number; date: string };
@@ -35,10 +31,10 @@ const WeightItem: React.FC<WeightItemProps> = ({
 
   return (
     <WeightContainer
-      index={index}
-      onClick={onClick} // Adiciona o evento de clique
+      $index={index}
+      onClick={onClick}
       style={{
-        border: isSelected ? '2px solid #000' : '1px solid #ddd', // Aplica a borda condicional
+        border: isSelected ? '2px solid #000' : '1px solid #ddd',
       }}
     >
       <PetDetailValue>{(weight.weight / 1000).toFixed(1)} kg</PetDetailValue>
@@ -47,7 +43,7 @@ const WeightItem: React.FC<WeightItemProps> = ({
         {new Date(weight.date).toLocaleDateString()}
       </PetWeightDate>
       {' | '}
-      <WeightDifference isGain={isGain} difference={difference}>
+      <WeightDifference $isGain={isGain} $difference={difference}>
         {difference === null
           ? '0.0 kg'
           : isGain

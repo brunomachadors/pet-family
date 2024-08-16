@@ -31,7 +31,6 @@ const WeightHistory: React.FC<WeightHistoryProps> = ({
   const visibleWeights = isExpanded ? weights : weights.slice(0, 3);
 
   const handleItemClick = (index: number) => {
-    // Alternar a seleção do item
     setSelectedIndex((prevIndex) => (prevIndex === index ? null : index));
   };
 
