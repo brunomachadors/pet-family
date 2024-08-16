@@ -119,3 +119,7 @@ export const StyledChartContainer = styled.div`
   margin: 0 auto;
   padding: 20px;
 `;
+
+export const WeightLine = styled.div`
+  width: 100%;
+`;

@@ -66,3 +66,50 @@ export const ExpandButton = styled.button`
     box-shadow: 0 0 0 3px rgba(69, 71, 75, 0.4);
   }
 `;
+
+export const AddWeightButton = styled.button`
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #45474b;
+  color: white;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: inline-block;
+
+  &:hover {
+    background-color: #5c5f63;
+    transform: scale(1.02);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(69, 71, 75, 0.4);
+  }
+`;
+
+export const RemoveWeightButton = styled.button`
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 8px 16px;
+  background-color: #e74c3c;
+  color: white;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: inline-block;
+
+  &:hover {
+    background-color: #c0392b;
+    transform: scale(1.02);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(69, 71, 75, 0.4);
+  }
+`;
