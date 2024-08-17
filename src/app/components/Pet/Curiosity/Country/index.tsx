@@ -4,6 +4,7 @@ import { TDogBreed } from '@/app/types/types';
 import { Container, PetDetailFieldName, PetDetailValue } from './style';
 import Image from 'next/image';
 import { FLAGS } from '@/app/assets/flags';
+import { InfoSubTitle } from '../style';
 
 const PetBreedCountry: React.FC<{ breed: string }> = ({ breed }) => {
   const [dogBreedDetails, setDogBreedDetails] = useState<TDogBreed | null>(
@@ -38,6 +39,7 @@ const PetBreedCountry: React.FC<{ breed: string }> = ({ breed }) => {
 
   return (
     <Container>
+      <InfoSubTitle>Origem</InfoSubTitle>
       <PetDetailFieldName>País de Origem</PetDetailFieldName>
       <PetDetailValue>
         {dogBreedDetails.country_of_origin || 'Desconhecido'}

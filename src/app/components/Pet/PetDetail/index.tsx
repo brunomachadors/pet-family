@@ -17,7 +17,6 @@ type PetDetailProps = {
 const PetDetail: React.FC<PetDetailProps> = ({ pet }) => {
   const [currentPet, setCurrentPet] = useState<TPet>(pet);
 
-  // Determine the image URL based on breed or use a default image
   const imageUrl =
     pet.breed && breedImageMap[pet.breed]
       ? breedImageMap[pet.breed]
@@ -29,11 +28,11 @@ const PetDetail: React.FC<PetDetailProps> = ({ pet }) => {
 
   return (
     <PetDetailContainer>
-      <PetDetailHeader>{pet.name.toUpperCase()}</PetDetailHeader>
+      <PetDetailHeader>{currentPet.name.toUpperCase()}</PetDetailHeader>
       <PetImageContainer>
         <Image
           src={imageUrl}
-          alt={pet.breed ? pet.breed : 'Imagem padrão'}
+          alt={currentPet.breed ? currentPet.breed : 'Imagem padrão'}
           width={100}
           height={100}
           priority
@@ -41,14 +40,16 @@ const PetDetail: React.FC<PetDetailProps> = ({ pet }) => {
       </PetImageContainer>
       <PetDetailInfoComponent pet={currentPet} onUpdatePet={handleUpdatePet} />
       <Divider />
-      <PetDetailWeighComponent pet={pet} />
+      <PetDetailWeighComponent pet={currentPet} />
       <Divider />
       <PetDetailHealthComponent />
 
-      {pet.species === 'Cachorro' && (
+      {currentPet.species === 'Cachorro' && (
         <>
           <Divider />
-          <PetDetailCuriosityComponents breed={pet.breed || 'Sem raça'} />
+          <PetDetailCuriosityComponents
+            breed={currentPet.breed || 'Sem raça'}
+          />
         </>
       )}
     </PetDetailContainer>

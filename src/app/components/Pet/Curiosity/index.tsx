@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {
   DetailsContainer,
+  InfoSubTitle,
   InfoTitle,
   LineContainer,
   PetDetail,
@@ -41,12 +42,14 @@ function PetDetailCuriosityComponents({
   return (
     <PetDetail>
       <InfoTitle onClick={toggleExpand}>
-        Curiosidades {isExpanded ? '▲' : '▼'}
+        Raça {isExpanded ? '▲' : '▼'}
       </InfoTitle>
       <DetailsContainer $isVisible={isExpanded}>
         {dogBreedDetails ? (
           <>
             <PetBreedCountry breed={dogBreedDetails.breed_name} />
+
+            <InfoSubTitle>Características Físicas</InfoSubTitle>
             <LineContainer>
               <PetDetailFieldName>Porte:</PetDetailFieldName>
               <PetDetailValue>{dogBreedDetails.size}</PetDetailValue>
@@ -65,6 +68,8 @@ function PetDetailCuriosityComponents({
                 {dogBreedDetails.average_height_max}cm
               </PetDetailValue>
             </LineContainer>
+
+            <InfoSubTitle>Saúde e Cuidados</InfoSubTitle>
             <LineContainer>
               <PetDetailFieldName>Expectativa de Vida:</PetDetailFieldName>
               <PetDetailValue>
@@ -76,12 +81,26 @@ function PetDetailCuriosityComponents({
               <PetDetailFieldName>
                 Problemas de Saúde Comuns:
               </PetDetailFieldName>
-            </LineContainer>
-            <LineContainer>
               <PetDetailValue>
                 {dogBreedDetails.common_health_issues}
               </PetDetailValue>
             </LineContainer>
+            <LineContainer>
+              <PetDetailFieldName>Tipo de Pelagem:</PetDetailFieldName>
+              <PetDetailValue>{dogBreedDetails.coat_type}</PetDetailValue>
+            </LineContainer>
+            <LineContainer>
+              <PetDetailFieldName>
+                Necessidade de Cuidados com a Pelagem:
+              </PetDetailFieldName>
+              <PetDetailValue>{dogBreedDetails.grooming_needs}</PetDetailValue>
+            </LineContainer>
+            <LineContainer>
+              <PetDetailFieldName>Nível de Queda de Pelos:</PetDetailFieldName>
+              <PetDetailValue>{dogBreedDetails.shedding_level}</PetDetailValue>
+            </LineContainer>
+
+            <InfoSubTitle>Energia e Exercício</InfoSubTitle>
             <LineContainer>
               <PetDetailFieldName>Nível de Energia:</PetDetailFieldName>
               <PetDetailValue>{dogBreedDetails.energy_level}</PetDetailValue>
@@ -92,6 +111,8 @@ function PetDetailCuriosityComponents({
               </PetDetailFieldName>
               <PetDetailValue>{dogBreedDetails.exercise_needs}</PetDetailValue>
             </LineContainer>
+
+            <InfoSubTitle>Personalidade e Interação</InfoSubTitle>
             <LineContainer>
               <PetDetailFieldName>Temperamento:</PetDetailFieldName>
               <PetDetailValue>{dogBreedDetails.temperament}</PetDetailValue>
@@ -103,6 +124,36 @@ function PetDetailCuriosityComponents({
               <PetDetailValue>
                 {dogBreedDetails.training_difficulty}
               </PetDetailValue>
+            </LineContainer>
+            <LineContainer>
+              <PetDetailFieldName>Amigável com Crianças:</PetDetailFieldName>
+              <PetDetailValue>{dogBreedDetails.child_friendly}</PetDetailValue>
+            </LineContainer>
+            <LineContainer>
+              <PetDetailFieldName>Amigável com Animais:</PetDetailFieldName>
+              <PetDetailValue>{dogBreedDetails.animal_friendly}</PetDetailValue>
+            </LineContainer>
+            <LineContainer>
+              <PetDetailFieldName>Intensidade do Latido:</PetDetailFieldName>
+              <PetDetailValue>{dogBreedDetails.barking_level}</PetDetailValue>
+            </LineContainer>
+
+            <InfoSubTitle>Informações Gerais</InfoSubTitle>
+            <LineContainer>
+              <PetDetailFieldName>Utilização:</PetDetailFieldName>
+              <PetDetailValue>{dogBreedDetails.common_usage}</PetDetailValue>
+            </LineContainer>
+            <LineContainer>
+              <PetDetailFieldName>Custo Médio:</PetDetailFieldName>
+              <PetDetailValue>R$ {dogBreedDetails.average_cost}</PetDetailValue>
+            </LineContainer>
+            <LineContainer>
+              <PetDetailFieldName>Popularidade:</PetDetailFieldName>
+              <PetDetailValue>{dogBreedDetails.popularity}</PetDetailValue>
+            </LineContainer>
+            <LineContainer>
+              <PetDetailFieldName>Inteligência:</PetDetailFieldName>
+              <PetDetailValue>{dogBreedDetails.intelligence}</PetDetailValue>
             </LineContainer>
           </>
         ) : (

@@ -1,14 +1,32 @@
 export const FLAGS = {
-  França:
-    'https://res.cloudinary.com/dtglidvcw/image/upload/v1723821024/flags/france.png',
-  Canadá:
-    'https://res.cloudinary.com/dtglidvcw/image/upload/v1723821024/flags/canada.png',
   Alemanha:
     'https://res.cloudinary.com/dtglidvcw/image/upload/v1723821936/flags/germany.png',
-  Escócia:
-    'https://res.cloudinary.com/dtglidvcw/image/upload/v1723821984/flags/scotland.png',
-  Inglaterra:
-    'https://res.cloudinary.com/dtglidvcw/image/upload/v1723821921/flags/england.png',
+  Austrália:
+    'https://res.cloudinary.com/dtglidvcw/image/upload/v1723895541/flags/australia.png',
   Brasil:
     'https://res.cloudinary.com/dtglidvcw/image/upload/v1723821921/flags/brazil.png',
+  Canadá:
+    'https://res.cloudinary.com/dtglidvcw/image/upload/v1723821024/flags/canada.png',
+  China:
+    'https://res.cloudinary.com/dtglidvcw/image/upload/v1723895541/flags/china.png',
+  Escócia:
+    'https://res.cloudinary.com/dtglidvcw/image/upload/v1723821984/flags/scotland.png',
+  Espanha:
+    'https://res.cloudinary.com/dtglidvcw/image/upload/v1723895542/flags/spain.png',
+  'Estados Unidos':
+    'https://res.cloudinary.com/dtglidvcw/image/upload/v1723895542/flags/usa.png',
+  França:
+    'https://res.cloudinary.com/dtglidvcw/image/upload/v1723821024/flags/france.png',
+  Inglaterra:
+    'https://res.cloudinary.com/dtglidvcw/image/upload/v1723821921/flags/england.png',
+  Itália:
+    'https://res.cloudinary.com/dtglidvcw/image/upload/v1723895542/flags/italy.png',
+  Japão:
+    'https://res.cloudinary.com/dtglidvcw/image/upload/v1723895542/flags/japan.png',
+  México:
+    'https://res.cloudinary.com/dtglidvcw/image/upload/v1723895542/flags/mexico.png',
+  Portugal:
+    'https://res.cloudinary.com/dtglidvcw/image/upload/v1723825051/flags/portugal.png',
+  Rússia:
+    'https://res.cloudinary.com/dtglidvcw/image/upload/v1723895542/flags/russia.png',
 };

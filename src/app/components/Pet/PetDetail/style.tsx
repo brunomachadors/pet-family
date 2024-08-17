@@ -5,6 +5,8 @@ export const PetDetailContainer = styled.div`
   border: 2px solid #45474b;
   border-radius: 15px;
   padding: 20px;
+  height: 100%;
+  overflow-y: auto;
 
   @media (max-width: 1024px) {
     width: 70vw;
