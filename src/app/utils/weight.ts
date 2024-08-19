@@ -58,9 +58,9 @@ export const formatDate = (dateString: string) => {
   };
   return new Date(dateString).toLocaleDateString(undefined, options);
 };
-export async function removeWeight(id_weight: number): Promise<void> {
+export async function removeWeight(weight_id: number): Promise<void> {
   try {
-    const response = await fetch(`/api/weight/${id_weight}`, {
+    const response = await fetch(`/api/weight/${weight_id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

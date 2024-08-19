@@ -46,7 +46,7 @@ export type TDogBreed = {
 };
 
 export interface TWeight {
-  id_weight: number;
+  weight_id: number;
   weight: number;
   date: string;
   pet_id: number;
