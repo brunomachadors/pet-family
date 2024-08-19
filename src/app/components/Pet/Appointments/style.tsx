@@ -33,6 +33,10 @@ export const StyledTable = styled.table`
   margin-top: 20px;
   border: 1px solid #ddd;
   margin-bottom: 20px;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const TableHeader = styled.th`
@@ -98,4 +102,36 @@ export const DetailParagraph = styled.p`
 export const DetailStrong = styled.strong`
   color: #000;
   font-weight: bold;
+`;
+
+export const CardContainer = styled.div`
+  display: none;
+  flex-direction: column;
+  gap: 20px;
+  margin: 15px;
+
+  @media (max-width: 768px) {
+    display: flex;
+  }
+`;
+
+export const Card = styled.div`
+  border: 1px solid #ddd;
+  padding: 25px 75px;
+  border-radius: 12px;
+  border: 1px solid #45474b;
+`;
+
+export const CardItem = styled.div`
+  margin-bottom: 10px;
+  color: #333;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 `;
