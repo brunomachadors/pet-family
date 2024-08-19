@@ -18,7 +18,7 @@ export async function addPet(
       return {
         success: true,
         message: 'Pet adicionado com sucesso!',
-        petId: result.id_pet,
+        petId: result.pet_id,
       };
     } else {
       return {
@@ -33,7 +33,7 @@ export async function addPet(
 }
 
 export async function updatePet(
-  petData: Partial<TPet> & { id_pet: number }
+  petData: Partial<TPet> & { pet_id: number }
 ): Promise<{ success: boolean; message: string; updatedPet?: TPet }> {
   try {
     const response = await fetch('/api/pet', {
@@ -65,7 +65,7 @@ export async function updatePet(
 }
 
 export async function removePet(
-  id_pet: number
+  pet_id: number
 ): Promise<{ success: boolean; message: string }> {
   try {
     const response = await fetch('/api/pet', {
@@ -73,7 +73,7 @@ export async function removePet(
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ id_pet }),
+      body: JSON.stringify({ pet_id }),
     });
 
     const result = await response.json();

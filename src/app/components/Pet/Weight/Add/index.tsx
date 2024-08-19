@@ -8,11 +8,11 @@ import {
 import { AddWeightButton } from '@/app/components/Buttons/style';
 
 interface AddPetWeightProps {
-  id_pet: number;
-  onSave: (id_pet: number, weight: string) => Promise<void>; // Adiciona a propriedade onSave
+  pet_id: number;
+  onSave: (pet_id: number, weight: string) => Promise<void>; // Adiciona a propriedade onSave
 }
 
-const AddPetWeight: React.FC<AddPetWeightProps> = ({ id_pet, onSave }) => {
+const AddPetWeight: React.FC<AddPetWeightProps> = ({ pet_id, onSave }) => {
   const [weight, setWeight] = useState('');
 
   const handleWeightChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,7 +32,7 @@ const AddPetWeight: React.FC<AddPetWeightProps> = ({ id_pet, onSave }) => {
     }
 
     try {
-      await onSave(id_pet, weight); // Usa a propriedade onSave
+      await onSave(pet_id, weight); // Usa a propriedade onSave
       setWeight('');
     } catch (error) {
       console.error('Erro ao salvar peso:', error);

@@ -15,7 +15,7 @@ export async function createUser(userData: User): Promise<number | null> {
     }
 
     const createdUser = await response.json();
-    return createdUser.id_user;
+    return createdUser.user_id;
   } catch (error) {
     console.error('Erro ao criar usuário:', error);
     return null;

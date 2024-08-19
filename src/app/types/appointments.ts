@@ -6,7 +6,7 @@ export type AppointmentType = {
 
 export type PetAppointment = {
   appointment_id: number;
-  id_pet: number;
+  pet_id: number;
   activity_name: string;
   activity_date: string;
   extra_info?: string;

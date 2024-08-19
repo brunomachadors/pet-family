@@ -94,7 +94,7 @@ const AddPetComponent: React.FC = () => {
       species,
       sex,
       color: color || undefined,
-      id_user: userId,
+      user_id: userId,
     };
 
     const response = await addPet(petData);

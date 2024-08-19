@@ -16,7 +16,7 @@ export async function GET(request: Request) {
 
     const { rows } = await sql<
       TWeight[]
-    >`SELECT * FROM weights WHERE id_pet = ${petId} ORDER BY date DESC`;
+    >`SELECT * FROM weights WHERE pet_id = ${petId} ORDER BY date DESC`;
 
     if (rows.length === 0) {
       return NextResponse.json(
@@ -38,9 +38,9 @@ export async function GET(request: Request) {
 export async function DELETE(request: Request) {
   try {
     const url = new URL(request.url);
-    const id_weight = url.pathname.split('/').pop();
+    const weight_id = url.pathname.split('/').pop();
 
-    if (!id_weight) {
+    if (!weight_id) {
       return NextResponse.json(
         { error: 'ID do peso não fornecido' },
         { status: 400 }
@@ -49,7 +49,7 @@ export async function DELETE(request: Request) {
 
     const result = await sql`
       DELETE FROM weights
-      WHERE id_weight = ${id_weight}
+      WHERE weight_id = ${weight_id}
       RETURNING *`;
 
     if (result.rowCount === 0) {

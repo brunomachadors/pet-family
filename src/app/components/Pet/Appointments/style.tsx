@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 interface ContainerProps {
-  isVisible: boolean;
+  $isVisible: boolean;
 }
 
 export const Container = styled.div<ContainerProps>`
-  display: ${({ isVisible }) => (isVisible ? 'flex' : 'none')};
+  display: ${({ $isVisible }) => ($isVisible ? 'flex' : 'none')};
   flex-direction: column;
   align-items: center;
   width: 100%;
@@ -20,7 +20,7 @@ export const InfoTitle = styled.h2`
 `;
 
 export const ContentContainer = styled.div<ContainerProps>`
-  display: ${({ isVisible }) => (isVisible ? 'flex' : 'none')};
+  display: ${({ $isVisible }) => ($isVisible ? 'flex' : 'none')};
   flex-direction: column;
   align-items: center;
   width: 100%;
@@ -44,30 +44,30 @@ export const TableHeader = styled.th`
   border-right: 1px solid #ddd;
 `;
 
-export const TableCell = styled.td<{ isSelected?: boolean }>`
+export const TableCell = styled.td<{ $isSelected?: boolean }>`
   padding: 12px;
   text-align: center;
   border-bottom: 1px solid #ddd;
   border-right: 1px solid #ddd;
   word-wrap: break-word;
-  border: ${({ isSelected }) =>
-    isSelected ? '2px solid #45474b' : '1px solid #ddd'};
+  border: ${({ $isSelected }) =>
+    $isSelected ? '2px solid #45474b' : '1px solid #ddd'};
 `;
 
-export const TableRow = styled.tr<{ isSelected?: boolean }>`
+export const TableRow = styled.tr<{ $isSelected?: boolean }>`
   &:hover {
     background-color: #f9f9f9;
     cursor: pointer;
   }
 `;
 
-export const ExpandedRow = styled.tr<{ isSelected?: boolean }>`
+export const ExpandedRow = styled.tr<{ $isSelected?: boolean }>`
   background-color: #f2f2f2;
   td {
     padding: 20px;
     text-align: left;
-    border-top: ${({ isSelected }) =>
-      isSelected ? '2px solid #45474b' : '1px solid #ddd'};
+    border-top: ${({ $isSelected }) =>
+      $isSelected ? '2px solid #45474b' : '1px solid #ddd'};
   }
 
   p {
@@ -79,13 +79,13 @@ export const ExpandedRow = styled.tr<{ isSelected?: boolean }>`
   }
 `;
 
-export const ExpandedCell = styled.td<{ isSelected?: boolean }>`
+export const ExpandedCell = styled.td<{ $isSelected?: boolean }>`
   padding: 20px;
   text-align: center;
   background-color: #f2f2f2;
   width: 100%;
-  border: ${({ isSelected }) =>
-    isSelected ? '2px solid #45474b' : '1px solid #ddd'};
+  border: ${({ $isSelected }) =>
+    $isSelected ? '2px solid #45474b' : '1px solid #ddd'};
 `;
 
 export const DetailParagraph = styled.p`

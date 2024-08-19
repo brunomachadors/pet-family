@@ -34,8 +34,8 @@ const WeightHistory: React.FC<WeightHistoryProps> = ({
     setSelectedIndex((prevIndex) => (prevIndex === index ? null : index));
   };
 
-  const handleRemoveClick = (id_weight: number) => {
-    setWeightToRemove(id_weight);
+  const handleRemoveClick = (weight_id: number) => {
+    setWeightToRemove(weight_id);
     setIsModalOpen(true);
   };
 
@@ -67,7 +67,7 @@ const WeightHistory: React.FC<WeightHistoryProps> = ({
           />
           {selectedIndex === index && (
             <RemoveWeightButton
-              onClick={() => handleRemoveClick(weight.id_weight)}
+              onClick={() => handleRemoveClick(weight.weight_id)}
             >
               Remover
             </RemoveWeightButton>

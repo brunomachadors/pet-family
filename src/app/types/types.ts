@@ -7,14 +7,14 @@ export type User = {
 };
 
 export type TPet = {
-  id_pet?: number;
+  pet_id?: number;
   name: string;
   dob?: string;
   breed?: string;
   species: string;
   sex?: string;
   color?: string;
-  id_user: number;
+  user_id: number;
 };
 
 export type TDogBreed = {
@@ -46,8 +46,8 @@ export type TDogBreed = {
 };
 
 export interface TWeight {
-  id_weight: number;
+  weight_id: number;
   weight: number;
   date: string;
-  id_pet: number;
+  pet_id: number;
 }
