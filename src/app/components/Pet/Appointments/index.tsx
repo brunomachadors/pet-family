@@ -39,11 +39,11 @@ const PetAppointments: React.FC<PetAppointmentsProps> = ({ pet }) => {
   if (error) return <p>{error}</p>;
 
   return (
-    <Container isVisible>
+    <Container $isVisible>
       <InfoTitle onClick={toggleComponentExpand}>
         Agenda {isComponentExpanded ? '▲' : '▼'}
       </InfoTitle>
-      <ContentContainer isVisible={isComponentExpanded}>
+      <ContentContainer $isVisible={isComponentExpanded}>
         {petAppointments.length === 0 ? (
           <p>Sem compromissos marcados</p>
         ) : (
@@ -62,10 +62,10 @@ const PetAppointments: React.FC<PetAppointmentsProps> = ({ pet }) => {
                 <React.Fragment key={appointment.appointment_id}>
                   <TableRow
                     onClick={() => toggleRowExpand(appointment.appointment_id)}
-                    isSelected={expandedRowId === appointment.appointment_id}
+                    $isSelected={expandedRowId === appointment.appointment_id}
                   >
                     <TableCell
-                      isSelected={expandedRowId === appointment.appointment_id}
+                      $isSelected={expandedRowId === appointment.appointment_id}
                     >
                       <Image
                         src={
@@ -81,22 +81,22 @@ const PetAppointments: React.FC<PetAppointmentsProps> = ({ pet }) => {
                       />
                     </TableCell>
                     <TableCell
-                      isSelected={expandedRowId === appointment.appointment_id}
+                      $isSelected={expandedRowId === appointment.appointment_id}
                     >
                       {appointment.activity_name}
                     </TableCell>
                     <TableCell
-                      isSelected={expandedRowId === appointment.appointment_id}
+                      $isSelected={expandedRowId === appointment.appointment_id}
                     >
                       {appointment.frequency}
                     </TableCell>
                     <TableCell
-                      isSelected={expandedRowId === appointment.appointment_id}
+                      $isSelected={expandedRowId === appointment.appointment_id}
                     >
                       {formatDate(appointment.activity_date)}
                     </TableCell>
                     <TableCell
-                      isSelected={expandedRowId === appointment.appointment_id}
+                      $isSelected={expandedRowId === appointment.appointment_id}
                     >
                       <Image
                         src={
@@ -113,11 +113,11 @@ const PetAppointments: React.FC<PetAppointmentsProps> = ({ pet }) => {
 
                   {expandedRowId === appointment.appointment_id && (
                     <ExpandedRow
-                      isSelected={expandedRowId === appointment.appointment_id}
+                      $isSelected={expandedRowId === appointment.appointment_id}
                     >
                       <ExpandedCell
                         colSpan={5}
-                        isSelected={
+                        $isSelected={
                           expandedRowId === appointment.appointment_id
                         }
                       >
