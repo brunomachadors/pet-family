@@ -11,6 +11,7 @@ export const Container = styled.div`
   background-color: #f5f7f8;
   box-sizing: border-box;
   margin-top: 20%;
+  margin-bottom: 2%;
 
   @media (max-width: 768px) {
     margin-top: 15%;

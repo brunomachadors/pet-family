@@ -9,6 +9,7 @@ import { PetImageContainer } from '../PetCard/style';
 import PetDetailWeighComponent from '../Weight';
 import PetDetailHealthComponent from '../Health';
 import PetDetailCuriosityComponents from '../Curiosity';
+import PetAppointments from '../Appointments';
 
 type PetDetailProps = {
   pet: TPet;
@@ -41,6 +42,9 @@ const PetDetail: React.FC<PetDetailProps> = ({ pet }) => {
       <PetDetailInfoComponent pet={currentPet} onUpdatePet={handleUpdatePet} />
       <Divider />
       <PetDetailWeighComponent pet={currentPet} />
+
+      <Divider />
+      <PetAppointments pet={currentPet} />
       <Divider />
       <PetDetailHealthComponent />
 
