@@ -14,7 +14,7 @@ export async function GET(request: Request) {
     }
 
     const { rows } =
-      await sql`SELECT id_user, first_name, last_name, email FROM users WHERE external_user_id = ${externalId}`;
+      await sql`SELECT user_id, first_name, last_name, email FROM users WHERE external_user_id = ${externalId}`;
     if (rows.length === 0) {
       return NextResponse.json(
         { error: 'Usuário não encontrado' },

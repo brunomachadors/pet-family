@@ -8,7 +8,7 @@ export async function verifyUser(user: User): Promise<number | null> {
 
     if (existingUser && !existingUser.error) {
       // Usuário já existe
-      return existingUser.id_user;
+      return existingUser.user_id;
     } else {
       // Usuário não existe, vamos criar
       const createdUserId = await createUser(user);

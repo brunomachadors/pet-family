@@ -20,7 +20,7 @@ export async function POST() {
       FROM 
         users u
       JOIN 
-        pets p ON u.id_user = p.id_user
+        pets p ON u.user_id = p.user_id
       JOIN 
         pet_appointments pt ON p.id_pet = pt.id_pet
       JOIN 

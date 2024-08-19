@@ -14,7 +14,7 @@ export type TPet = {
   species: string;
   sex?: string;
   color?: string;
-  id_user: number;
+  user_id: number;
 };
 
 export type TDogBreed = {

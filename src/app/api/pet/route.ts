@@ -3,13 +3,13 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
   try {
-    const { name, dob, breed, species, sex, color, id_user } =
+    const { name, dob, breed, species, sex, color, user_id } =
       await request.json();
 
-    if (!name || !species || id_user === undefined) {
+    if (!name || !species || user_id === undefined) {
       return NextResponse.json(
         {
-          error: 'Campos obrigatórios (name, species, id_user) são necessários',
+          error: 'Campos obrigatórios (name, species, user_id) são necessários',
         },
         { status: 400 }
       );
@@ -18,7 +18,7 @@ export async function POST(request: Request) {
     if (
       typeof name !== 'string' ||
       typeof species !== 'string' ||
-      typeof id_user !== 'number' ||
+      typeof user_id !== 'number' ||
       (dob && typeof dob !== 'string') ||
       (breed && typeof breed !== 'string') ||
       (sex && typeof sex !== 'string') ||
@@ -31,10 +31,10 @@ export async function POST(request: Request) {
     }
 
     const result = await sql`
-      INSERT INTO pets (name, dob, breed, species, sex, color, id_user)
+      INSERT INTO pets (name, dob, breed, species, sex, color, user_id)
       VALUES (
         ${name}, ${dob || null}, ${breed || null}, ${species}, 
-        ${sex || null}, ${color || null}, ${id_user}
+        ${sex || null}, ${color || null}, ${user_id}
       )
       RETURNING *`;
 
@@ -52,7 +52,7 @@ export async function POST(request: Request) {
 
 export async function PUT(request: Request) {
   try {
-    const { id_pet, name, dob, breed, species, sex, color, id_user } =
+    const { id_pet, name, dob, breed, species, sex, color, user_id } =
       await request.json();
 
     // Atualiza o pet na tabela
@@ -65,7 +65,7 @@ export async function PUT(request: Request) {
         species = COALESCE(${species}, species),
         sex = COALESCE(${sex}, sex),
         color = COALESCE(${color}, color),
-        id_user = COALESCE(${id_user}, id_user)
+        user_id = COALESCE(${user_id}, user_id)
       WHERE id_pet = ${id_pet}
       RETURNING *`;
 

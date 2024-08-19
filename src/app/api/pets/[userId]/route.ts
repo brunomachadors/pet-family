@@ -16,7 +16,7 @@ export async function GET(request: Request) {
 
     const { rows } = await sql<
       TPet[]
-    >`SELECT * FROM pets WHERE id_user = ${userId} ORDER BY id_pet`;
+    >`SELECT * FROM pets WHERE user_id = ${userId} ORDER BY id_pet`;
 
     if (rows.length === 0) {
       return NextResponse.json(
