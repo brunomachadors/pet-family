@@ -42,14 +42,14 @@ const PetList: React.FC<PetListProps> = ({ userId }) => {
   }, [userId]);
 
   const handleCardClick = (pet: TPet) => {
-    router.push(`/pages/pet/${pet.id_pet}`);
+    router.push(`/pages/pet/${pet.pet_id}`);
   };
 
   return (
     <PetListContainer>
       {pets.map((pet) => (
         <PetCard
-          key={pet.id_pet}
+          key={pet.pet_id}
           pet={pet}
           onClick={() => handleCardClick(pet)}
         />

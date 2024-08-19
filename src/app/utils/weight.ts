@@ -1,13 +1,13 @@
 import { TWeight } from '../types/types';
 
-export async function addWeight(id_pet: number, weight: number): Promise<void> {
+export async function addWeight(pet_id: number, weight: number): Promise<void> {
   try {
     const response = await fetch('/api/weight', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ weight, id_pet }),
+      body: JSON.stringify({ weight, pet_id }),
     });
 
     if (!response.ok) {
@@ -22,9 +22,9 @@ export async function addWeight(id_pet: number, weight: number): Promise<void> {
   }
 }
 
-export async function getWeight(id_pet: number): Promise<TWeight[]> {
+export async function getWeight(pet_id: number): Promise<TWeight[]> {
   try {
-    const response = await fetch(`/api/weight/${id_pet}`, {
+    const response = await fetch(`/api/weight/${pet_id}`, {
       method: 'GET',
     });
 

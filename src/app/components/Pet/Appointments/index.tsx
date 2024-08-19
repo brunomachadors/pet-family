@@ -27,7 +27,7 @@ const PetAppointments: React.FC<PetAppointmentsProps> = ({ pet }) => {
   const [expandedRowId, setExpandedRowId] = useState<number | null>(null);
 
   const { petAppointments, appointmentTypes, error } = usePetAppointments(
-    pet.id_pet!
+    pet.pet_id!
   );
 
   const toggleComponentExpand = () => setIsComponentExpanded((prev) => !prev);

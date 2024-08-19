@@ -49,7 +49,7 @@ const PetDetailEdit: React.FC<PetDetailEditProps> = ({
   };
 
   const handleSave = async () => {
-    if (pet.id_pet === undefined) {
+    if (pet.pet_id === undefined) {
       setMessage('ID do pet não encontrado.');
       return;
     }
@@ -61,7 +61,7 @@ const PetDetailEdit: React.FC<PetDetailEditProps> = ({
       updatedPet,
     } = await updatePet({
       ...editedPet,
-      id_pet: pet.id_pet,
+      pet_id: pet.pet_id,
     });
 
     setLoading(false);
@@ -69,7 +69,7 @@ const PetDetailEdit: React.FC<PetDetailEditProps> = ({
 
     if (success && updatedPet) {
       onUpdatePet(updatedPet);
-      router.push(`/pages/pet/${pet.id_pet}`);
+      router.push(`/pages/pet/${pet.pet_id}`);
     }
   };
 

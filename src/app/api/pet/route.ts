@@ -52,7 +52,7 @@ export async function POST(request: Request) {
 
 export async function PUT(request: Request) {
   try {
-    const { id_pet, name, dob, breed, species, sex, color, user_id } =
+    const { pet_id, name, dob, breed, species, sex, color, user_id } =
       await request.json();
 
     // Atualiza o pet na tabela
@@ -66,7 +66,7 @@ export async function PUT(request: Request) {
         sex = COALESCE(${sex}, sex),
         color = COALESCE(${color}, color),
         user_id = COALESCE(${user_id}, user_id)
-      WHERE id_pet = ${id_pet}
+      WHERE pet_id = ${pet_id}
       RETURNING *`;
 
     const updatedPet = result.rows[0];
@@ -90,18 +90,18 @@ export async function PUT(request: Request) {
 
 export async function DELETE(request: Request) {
   try {
-    const { id_pet } = await request.json();
+    const { pet_id } = await request.json();
 
-    if (id_pet === undefined) {
+    if (pet_id === undefined) {
       return NextResponse.json(
-        { error: 'O campo id_pet é obrigatório' },
+        { error: 'O campo pet_id é obrigatório' },
         { status: 400 }
       );
     }
 
     const result = await sql`
       DELETE FROM pets
-      WHERE id_pet = ${id_pet}
+      WHERE pet_id = ${pet_id}
       RETURNING *`;
 
     const deletedPet = result.rows[0];

@@ -22,7 +22,7 @@ export async function POST() {
       JOIN 
         pets p ON u.user_id = p.user_id
       JOIN 
-        pet_appointments pt ON p.id_pet = pt.id_pet
+        pet_appointments pt ON p.pet_id = pt.pet_id
       JOIN 
         appointment_types a ON pt.type_id = a.type_id
       WHERE 

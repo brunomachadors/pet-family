@@ -3,18 +3,18 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
   try {
-    const { weight, id_pet } = await request.json();
+    const { weight, pet_id } = await request.json();
 
-    if (weight === undefined || id_pet === undefined) {
+    if (weight === undefined || pet_id === undefined) {
       return NextResponse.json(
         {
-          error: 'Campos obrigatórios (weight, id_pet) são necessários',
+          error: 'Campos obrigatórios (weight, pet_id) são necessários',
         },
         { status: 400 }
       );
     }
 
-    if (typeof weight !== 'number' || typeof id_pet !== 'number') {
+    if (typeof weight !== 'number' || typeof pet_id !== 'number') {
       return NextResponse.json(
         { error: 'Tipo de dado inválido' },
         { status: 400 }
@@ -24,8 +24,8 @@ export async function POST(request: Request) {
     const currentDate = new Date().toISOString();
 
     const result = await sql`
-      INSERT INTO weights (weight, date, id_pet)
-      VALUES (${weight}, ${currentDate}, ${id_pet})
+      INSERT INTO weights (weight, date, pet_id)
+      VALUES (${weight}, ${currentDate}, ${pet_id})
       RETURNING *`;
 
     const newWeightEntry = result.rows[0];

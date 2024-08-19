@@ -16,7 +16,7 @@ export async function GET(request: Request) {
 
     const { rows } = await sql<
       TWeight[]
-    >`SELECT * FROM weights WHERE id_pet = ${petId} ORDER BY date DESC`;
+    >`SELECT * FROM weights WHERE pet_id = ${petId} ORDER BY date DESC`;
 
     if (rows.length === 0) {
       return NextResponse.json(

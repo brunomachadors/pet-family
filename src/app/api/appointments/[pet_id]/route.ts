@@ -13,7 +13,7 @@ export async function GET(request: Request) {
 
     const { rows } = await sql<PetAppointment[]>`
       SELECT * FROM pet_appointments
-      WHERE id_pet = ${idPet}
+      WHERE pet_id = ${idPet}
       ORDER BY activity_date DESC
     `;
 
