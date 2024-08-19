@@ -11,13 +11,14 @@ import {
 
 interface VetConsultationEmailProps {
   dogName: string;
+  petSpecies: string;
   appointmentDate: string;
   extraInfo: string;
 }
 
 export const VetConsultationEmail: React.FC<
   Readonly<VetConsultationEmailProps>
-> = ({ dogName, appointmentDate, extraInfo }) => (
+> = ({ dogName, petSpecies, appointmentDate, extraInfo }) => (
   <Html lang="pt-BR">
     <Head />
     <Body
@@ -54,12 +55,17 @@ export const VetConsultationEmail: React.FC<
         <Img
           src="https://res.cloudinary.com/dtglidvcw/image/upload/v1724017518/notification/consulta.png"
           alt="Notificação de Consulta Veterinária"
-          width="50%" // Reduz o tamanho da imagem para 50%
-          style={{ borderRadius: '8px', marginBottom: '20px' }}
+          width="50%"
+          style={{
+            display: 'block',
+            margin: '0 auto',
+            borderRadius: '8px',
+            marginBottom: '20px',
+          }}
         />
         <Text style={{ fontSize: '16px', color: '#555' }}>Olá!</Text>
         <Text style={{ fontSize: '16px', color: '#555' }}>
-          Este é um lembrete para a consulta veterinária para o seu cachorro{' '}
+          Este é um lembrete para a consulta veterinária para o seu {petSpecies}{' '}
           <strong>{dogName}</strong> marcada para o dia{' '}
           <strong>{appointmentDate}</strong>.
         </Text>

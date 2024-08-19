@@ -11,12 +11,14 @@ import {
 
 interface VaccinationEmailProps {
   dogName: string;
+  petSpecies: string;
   vaccineName: string;
   dueDate: string;
 }
 
 export const VaccinationEmail: React.FC<Readonly<VaccinationEmailProps>> = ({
   dogName,
+  petSpecies,
   vaccineName,
   dueDate,
 }) => (
@@ -56,13 +58,18 @@ export const VaccinationEmail: React.FC<Readonly<VaccinationEmailProps>> = ({
         <Img
           src="https://res.cloudinary.com/dtglidvcw/image/upload/v1723991581/notification/vacina.png"
           alt="Notificação de Vacinação"
-          width="50%" // Reduz o tamanho da imagem para 50%
-          style={{ borderRadius: '8px', marginBottom: '20px' }}
+          width="50%"
+          style={{
+            display: 'block',
+            margin: '0 auto',
+            borderRadius: '8px',
+            marginBottom: '20px',
+          }}
         />
         <Text style={{ fontSize: '16px', color: '#555' }}>Olá!</Text>
         <Text style={{ fontSize: '16px', color: '#555' }}>
           Este é um lembrete para informar que a vacina{' '}
-          <strong>{vaccineName}</strong> para o seu cachorro{' '}
+          <strong>{vaccineName}</strong> para o seu {petSpecies}{' '}
           <strong>{dogName}</strong> está programada para o dia{' '}
           <strong>{dueDate}</strong>.
         </Text>

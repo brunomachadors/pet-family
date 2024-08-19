@@ -7,61 +7,70 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST() {
   try {
-    // Query to get all pet appointments
-    const { rows: appointments } = await sql`SELECT * FROM pet_appointments`;
+    const { rows: appointments } = await sql`
+      SELECT 
+        p."name" AS pet_name, 
+        p.species AS pet_species,  -- Adiciona a espécie do pet
+        pt.activity_name, 
+        a.description AS appointment_type_name, 
+        pt.activity_date, 
+        u.email, 
+        pt.extra_info,
+        pt.is_completed  -- Adiciona o status de conclusão do compromisso
+      FROM 
+        users u
+      JOIN 
+        pets p ON u.id_user = p.id_user
+      JOIN 
+        pet_appointments pt ON p.id_pet = pt.id_pet
+      JOIN 
+        appointment_types a ON pt.type_id = a.type_id
+      WHERE 
+        pt.activity_date >= CURRENT_DATE
+        AND pt.is_completed = FALSE  -- Filtra apenas compromissos não concluídos
+    `;
 
-    // Query to get all pets
-    const { rows: pets } = await sql`SELECT * FROM pets`;
-
-    // Query to get all users
-    const { rows: users } = await sql`SELECT * FROM users`;
-
-    // Query to get all appointment types
-    const { rows: appointmentTypes } =
-      await sql`SELECT * FROM appointment_types`;
-
-    // Iterate over each appointment
-    for (const appointment of appointments) {
-      // Find the pet
-      const pet = pets.find((pet) => pet.id_pet === appointment.id_pet);
-      if (!pet) continue;
-
-      // Find the user
-      const user = users.find((user) => user.id_user === pet.id_user);
-      if (!user) continue;
-
-      // Find the appointment type
-      const appointmentType = appointmentTypes.find(
-        (type) => type.type_id === appointment.type_id
+    if (appointments.length === 0) {
+      return new Response(
+        JSON.stringify({ message: 'Nenhum compromisso futuro encontrado.' }),
+        { status: 200 }
       );
-      if (!appointmentType) continue;
+    }
 
+    for (const appointment of appointments) {
       let emailContent;
-      if (appointmentType.type_name === 'Vacinação') {
-        emailContent = VaccinationEmail({
-          dogName: pet.name,
-          vaccineName: appointment.extra_info,
-          dueDate: new Date(appointment.activity_date).toLocaleDateString(
-            'pt-BR'
-          ),
-        });
-      } else if (appointmentType.type_name === 'Consulta Veterinária') {
-        emailContent = VetConsultationEmail({
-          dogName: pet.name,
-          appointmentDate: new Date(
-            appointment.activity_date
-          ).toLocaleDateString('pt-BR'),
-          extraInfo: appointment.extra_info,
-        });
-      } else {
-        continue;
+      switch (appointment.activity_name) {
+        case 'Vacinação':
+          emailContent = VaccinationEmail({
+            dogName: appointment.pet_name,
+            petSpecies: appointment.pet_species,
+            vaccineName: appointment.extra_info,
+            dueDate: new Date(appointment.activity_date).toLocaleDateString(
+              'pt-BR'
+            ),
+          });
+          break;
+        case 'Consulta Veterinária':
+          emailContent = VetConsultationEmail({
+            dogName: appointment.pet_name,
+            petSpecies: appointment.pet_species,
+            appointmentDate: new Date(
+              appointment.activity_date
+            ).toLocaleDateString('pt-BR'),
+            extraInfo: appointment.extra_info,
+          });
+          break;
+        default:
+          console.log(
+            `Tipo de atividade desconhecido: ${appointment.activity_name}`
+          );
+          continue;
       }
 
-      // Send email
       await resend.emails.send({
         from: 'Acme <onboarding@resend.dev>',
-        to: [user.email],
-        subject: `Aviso de ${appointmentType.type_name}`,
+        to: [appointment.email],
+        subject: `Aviso de ${appointment.activity_name}`,
         react: emailContent,
       });
     }
