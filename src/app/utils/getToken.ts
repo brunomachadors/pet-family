@@ -1,23 +1,22 @@
-import axios from 'axios';
-
 export async function fetchToken() {
-  const response = await axios.post('/api/token');
-  const { token } = response.data;
-  console.log(token);
-  return token;
-}
-
-export async function fetchProtectedData() {
-  const token = await fetchToken();
-
-  const apiResponse = await axios.get(
-    'https://api.example.com/protected-endpoint',
-    {
+  try {
+    const response = await fetch('/api/token', {
+      method: 'POST',
       headers: {
-        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
       },
-    }
-  );
+    });
 
-  return apiResponse.data;
+    if (!response.ok) {
+      throw new Error(`Error fetching token: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    const { token } = data;
+
+    return token;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 }

@@ -2,15 +2,10 @@
 
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import styled from 'styled-components';
 import PetCard from '../PetCard';
 import { TPet } from '@/app/types/types';
-
-const PetListContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-`;
+import { getPetsByUserId } from '@/app/utils/pets';
+import { Container } from './style';
 
 type PetListProps = {
   userId: number;
@@ -22,20 +17,8 @@ const PetList: React.FC<PetListProps> = ({ userId }) => {
 
   useEffect(() => {
     const fetchPets = async () => {
-      try {
-        const response = await fetch(`/api/pets/${userId}`);
-        const data = await response.json();
-
-        if (Array.isArray(data)) {
-          setPets(data);
-        } else {
-          console.error('Resposta da API não é um array:', data);
-          setPets([]);
-        }
-      } catch (error) {
-        console.error('Erro ao buscar pets:', error);
-        setPets([]);
-      }
+      const petsData = await getPetsByUserId(userId);
+      setPets(petsData);
     };
 
     fetchPets();
@@ -46,7 +29,7 @@ const PetList: React.FC<PetListProps> = ({ userId }) => {
   };
 
   return (
-    <PetListContainer>
+    <Container>
       {pets.map((pet) => (
         <PetCard
           key={pet.pet_id}
@@ -54,7 +37,7 @@ const PetList: React.FC<PetListProps> = ({ userId }) => {
           onClick={() => handleCardClick(pet)}
         />
       ))}
-    </PetListContainer>
+    </Container>
   );
 };
 

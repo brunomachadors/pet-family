@@ -40,7 +40,7 @@ export default function RootLayout({
           <Footer>
             <p>&copy; 2024 PET FAMILY. Todos os direitos reservados.</p>
           </Footer>
-          <SpeedInsights></SpeedInsights>
+          <SpeedInsights />
         </body>
       </html>
     </ClerkProvider>

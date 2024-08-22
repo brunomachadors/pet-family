@@ -12,7 +12,6 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
     }
 
-    // Gerar um token JWT
     const token = jwt.sign({ userId }, secret, { expiresIn: '1h' });
 
     return NextResponse.json({ token }, { status: 200 });
