@@ -20,7 +20,7 @@ export async function POST(request: Request) {
     // Verificar o token usando a função utilitária
     try {
       verifyToken(token);
-    } catch (err) {
+    } catch {
       return NextResponse.json(
         { error: 'Token de autenticação inválido' },
         { status: 401 }
