@@ -1,8 +1,13 @@
+import { authenticateRequest } from '@/app/utils/token/authenticateRequest';
 import { sql } from '@vercel/postgres';
 import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
   try {
+    const authError = authenticateRequest(request);
+    if (authError) {
+      return authError;
+    }
     const { name, dob, breed, species, sex, color, user_id } =
       await request.json();
 
@@ -52,6 +57,11 @@ export async function POST(request: Request) {
 
 export async function PUT(request: Request) {
   try {
+    const authError = authenticateRequest(request);
+    if (authError) {
+      return authError;
+    }
+
     const { pet_id, name, dob, breed, species, sex, color, user_id } =
       await request.json();
 
@@ -90,6 +100,10 @@ export async function PUT(request: Request) {
 
 export async function DELETE(request: Request) {
   try {
+    const authError = authenticateRequest(request);
+    if (authError) {
+      return authError;
+    }
     const { pet_id } = await request.json();
 
     if (pet_id === undefined) {

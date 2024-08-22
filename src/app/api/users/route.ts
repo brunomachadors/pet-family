@@ -1,30 +1,12 @@
 import { sql } from '@vercel/postgres';
 import { NextResponse } from 'next/server';
-import { verifyToken } from '@/app/utils/verifyToken';
+import { authenticateRequest } from '@/app/utils/token/authenticateRequest';
 
 export async function POST(request: Request) {
-  console.log('Recebendo requisição POST no endpoint /api/users');
-
   try {
-    // Verificar o cabeçalho Authorization para obter o token
-    const authHeader = request.headers.get('Authorization');
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return NextResponse.json(
-        { error: 'Token de autenticação não fornecido' },
-        { status: 401 }
-      );
-    }
-
-    const token = authHeader.split(' ')[1];
-
-    // Verificar o token usando a função utilitária
-    try {
-      verifyToken(token);
-    } catch {
-      return NextResponse.json(
-        { error: 'Token de autenticação inválido' },
-        { status: 401 }
-      );
+    const authError = authenticateRequest(request);
+    if (authError) {
+      return authError;
     }
 
     const { firstName, lastName, email, externalId } = await request.json();

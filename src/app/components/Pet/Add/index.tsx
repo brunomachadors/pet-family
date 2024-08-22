@@ -5,7 +5,7 @@ import { Form, Button, ErrorMessage, FormContainer } from './style';
 import { TPet } from '@/app/types/types';
 import { verifyUser } from '@/app/utils/verifyUser';
 import { addPet } from '@/app/utils/pets';
-import { getDogBreedNames } from '@/app/utils/breeds'; // Importa a função para obter as raças de cachorros
+import { getDogBreedNames } from '@/app/utils/breeds';
 import ConfirmAddModal from '../../Modal/ConfirmAdd';
 import AuthGuard from '../../AuthGuard';
 import { BreedSelect, SpeciesSelect } from '../../Select';
@@ -29,7 +29,7 @@ const AddPetComponent: React.FC = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
   const [petId, setPetId] = useState<number | null>(null);
-  const [breedOptions, setBreedOptions] = useState<string[]>([]); // Estado para armazenar as opções de raças
+  const [breedOptions, setBreedOptions] = useState<string[]>([]);
 
   useEffect(() => {
     const initializeUser = async () => {
@@ -122,7 +122,6 @@ const AddPetComponent: React.FC = () => {
       <FormContainer>
         <Form onSubmit={handleSubmit}>
           <PetNameInput name={name} onNameChange={setName} />
-
           <SpeciesSelect species={species} onSpeciesChange={setSpecies} />
           {species === 'Cachorro' ? (
             <BreedSelect
@@ -133,15 +132,12 @@ const AddPetComponent: React.FC = () => {
           ) : (
             <BreedNameInput breed={breed} onBreedChange={setBreed} />
           )}
-
           <ColorInput color={color} onColorChange={setColor} />
           <DobInput dob={dob} onDobChange={setDob} />
           <SexRadioGroup sex={sex} onSexChange={handleSexChange} />
-
           {error && <ErrorMessage>{error}</ErrorMessage>}
           <Button type="submit">Adicionar Pet</Button>
         </Form>
-
         {success && petId !== null && <ConfirmAddModal petId={petId} />}
       </FormContainer>
     </AuthGuard>

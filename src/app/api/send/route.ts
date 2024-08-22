@@ -2,11 +2,16 @@ import { Resend } from 'resend';
 import { sql } from '@vercel/postgres';
 import { VaccinationEmail } from '@/app/components/Email/VaccinationEmail';
 import { VetConsultationEmail } from '@/app/components/Email/VetConsultationEmail';
+import { authenticateRequest } from '@/app/utils/token/authenticateRequest';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export async function POST() {
+export async function POST(request: Request) {
   try {
+    const authError = authenticateRequest(request);
+    if (authError) {
+      return authError;
+    }
     const { rows: appointments } = await sql`
       SELECT 
         p."name" AS pet_name, 

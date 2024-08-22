@@ -11,32 +11,35 @@ import {
   HeaderParagraph,
 } from './style';
 import PetList from '@/app/components/Pet/PetCardList';
-import { verifyUser } from '@/app/utils/verifyUser';
-
 import { AddPetButton } from '@/app/components/Buttons';
 import AuthGuard from '@/app/components/AuthGuard';
+import { initializeUser } from '@/app/utils/user/user';
 
 const Mypets: React.FC = () => {
   const { user } = useUser();
   const [userId, setUserId] = useState<number | null>(null);
 
   useEffect(() => {
-    if (user) {
-      const initializeUser = async () => {
-        const verifiedUserId = await verifyUser({
-          firstName: user.firstName || '',
-          lastName: user.lastName || '',
-          email: user.emailAddresses[0]?.emailAddress || '',
+    const fetchUserId = async () => {
+      if (user) {
+        console.log(user);
+        const userObj = {
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.emailAddresses[0]?.emailAddress,
+          id: user.id,
           externalId: user.id,
-        });
+        };
+
+        const verifiedUserId = await initializeUser(userObj);
 
         if (verifiedUserId !== null) {
           setUserId(verifiedUserId);
         }
-      };
+      }
+    };
 
-      initializeUser();
-    }
+    fetchUserId();
   }, [user]);
 
   return (

@@ -1,4 +1,5 @@
 import { TDogBreed } from '../types/types';
+import { fetchToken } from './token/getToken';
 
 export async function getDogBreeds(): Promise<{
   success: boolean;
@@ -6,9 +7,11 @@ export async function getDogBreeds(): Promise<{
   breeds?: TDogBreed[];
 }> {
   try {
+    const token = await fetchToken();
     const response = await fetch('/api/breeds/dogs', {
       method: 'GET',
       headers: {
+        Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
       },
     });
@@ -39,9 +42,11 @@ export async function getDogBreedNames(): Promise<{
   breedNames?: string[];
 }> {
   try {
+    const token = await fetchToken();
     const response = await fetch('/api/breeds/dogs', {
       method: 'GET',
       headers: {
+        Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
       },
     });
@@ -80,11 +85,13 @@ export async function getDogBreedByName(breedName: string): Promise<{
   breed?: TDogBreed;
 }> {
   try {
+    const token = await fetchToken(); // Obtém o token de autenticação
     const response = await fetch(
       `/api/breeds/dogs/${encodeURIComponent(breedName)}`,
       {
         method: 'GET',
         headers: {
+          Authorization: `Bearer ${token}`, // Inclui o token no cabeçalho
           'Content-Type': 'application/json',
         },
       }

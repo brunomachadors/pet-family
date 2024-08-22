@@ -1,9 +1,15 @@
 import { sql } from '@vercel/postgres';
 import { NextResponse } from 'next/server';
 import { PetAppointment } from '../../../types/appointments';
+import { authenticateRequest } from '@/app/utils/token/authenticateRequest';
 
 export async function GET(request: Request) {
   try {
+    const authError = authenticateRequest(request);
+    if (authError) {
+      return authError;
+    }
+
     const url = new URL(request.url);
     const idPet = url.pathname.split('/').pop();
 
