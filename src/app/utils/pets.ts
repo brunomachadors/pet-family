@@ -91,3 +91,30 @@ export async function removePet(
     return { success: false, message: 'Erro ao se conectar com o servidor.' };
   }
 }
+
+export async function getPetsByUserId(userId: number): Promise<TPet[]> {
+  try {
+    const response = await fetch(`/api/pets/${userId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error('Erro ao buscar pets');
+    }
+
+    const data = await response.json();
+
+    if (Array.isArray(data)) {
+      return data;
+    } else {
+      console.error('Resposta da API não é um array:', data);
+      return [];
+    }
+  } catch (error) {
+    console.error('Erro ao buscar pets:', error);
+    return [];
+  }
+}
