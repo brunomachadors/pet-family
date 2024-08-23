@@ -65,7 +65,6 @@ export async function PUT(request: Request) {
     const { pet_id, name, dob, breed, species, sex, color, user_id } =
       await request.json();
 
-    // Atualiza o pet na tabela
     const result = await sql`
       UPDATE pets
       SET 
@@ -104,6 +103,7 @@ export async function DELETE(request: Request) {
     if (authError) {
       return authError;
     }
+
     const { pet_id } = await request.json();
 
     if (pet_id === undefined) {
@@ -112,6 +112,11 @@ export async function DELETE(request: Request) {
         { status: 400 }
       );
     }
+
+    await sql`
+      DELETE FROM weights
+      WHERE pet_id = ${pet_id}
+    `;
 
     const result = await sql`
       DELETE FROM pets
