@@ -1,9 +1,15 @@
 import { TPet } from '@/app/types/types';
+import { authenticateRequest } from '@/app/utils/token/authenticateRequest';
 import { sql } from '@vercel/postgres';
 import { NextResponse } from 'next/server';
 
 export async function GET(request: Request) {
   try {
+    const authError = authenticateRequest(request);
+    if (authError) {
+      return authError;
+    }
+
     const url = new URL(request.url);
     const petId = url.pathname.split('/').pop();
 

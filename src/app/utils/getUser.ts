@@ -1,4 +1,4 @@
-import { fetchToken } from './getToken';
+import { fetchToken } from './token/getToken';
 
 export async function getUser(externalId: string) {
   try {

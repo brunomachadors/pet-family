@@ -1,17 +1,21 @@
 import { TWeight } from '../types/types';
+import { fetchToken } from './token/getToken';
 
 export async function addWeight(pet_id: number, weight: number): Promise<void> {
   try {
+    const token = await fetchToken();
+
     const response = await fetch('/api/weight', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({ weight, pet_id }),
     });
 
     if (!response.ok) {
-      const errorText = await response.text(); // Ler o corpo da resposta de erro
+      const errorText = await response.text();
       throw new Error(
         `Erro ao adicionar peso: ${response.statusText}. ${errorText}`
       );
@@ -24,8 +28,13 @@ export async function addWeight(pet_id: number, weight: number): Promise<void> {
 
 export async function getWeight(pet_id: number): Promise<TWeight[]> {
   try {
+    const token = await fetchToken();
+
     const response = await fetch(`/api/weight/${pet_id}`, {
       method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     });
 
     if (!response.ok) {
@@ -58,12 +67,16 @@ export const formatDate = (dateString: string) => {
   };
   return new Date(dateString).toLocaleDateString(undefined, options);
 };
+
 export async function removeWeight(weight_id: number): Promise<void> {
   try {
+    const token = await fetchToken();
+
     const response = await fetch(`/api/weight/${weight_id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
       },
     });
 

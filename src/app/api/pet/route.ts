@@ -1,8 +1,13 @@
+import { authenticateRequest } from '@/app/utils/token/authenticateRequest';
 import { sql } from '@vercel/postgres';
 import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
   try {
+    const authError = authenticateRequest(request);
+    if (authError) {
+      return authError;
+    }
     const { name, dob, breed, species, sex, color, user_id } =
       await request.json();
 
@@ -52,10 +57,14 @@ export async function POST(request: Request) {
 
 export async function PUT(request: Request) {
   try {
+    const authError = authenticateRequest(request);
+    if (authError) {
+      return authError;
+    }
+
     const { pet_id, name, dob, breed, species, sex, color, user_id } =
       await request.json();
 
-    // Atualiza o pet na tabela
     const result = await sql`
       UPDATE pets
       SET 
@@ -90,6 +99,11 @@ export async function PUT(request: Request) {
 
 export async function DELETE(request: Request) {
   try {
+    const authError = authenticateRequest(request);
+    if (authError) {
+      return authError;
+    }
+
     const { pet_id } = await request.json();
 
     if (pet_id === undefined) {
@@ -98,6 +112,11 @@ export async function DELETE(request: Request) {
         { status: 400 }
       );
     }
+
+    await sql`
+      DELETE FROM weights
+      WHERE pet_id = ${pet_id}
+    `;
 
     const result = await sql`
       DELETE FROM pets

@@ -1,5 +1,5 @@
 import { User } from '@/app/types/types';
-import { fetchToken } from './getToken';
+import { fetchToken } from './token/getToken';
 
 export async function createUser(userData: User): Promise<number | null> {
   try {

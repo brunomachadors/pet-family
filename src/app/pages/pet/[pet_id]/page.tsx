@@ -8,6 +8,7 @@ import { BackButton } from '@/app/components/Buttons/style';
 import { TPet } from '@/app/types/types';
 import RemovePetButton from '@/app/components/Pet/Remove';
 import AuthGuard from '@/app/components/AuthGuard';
+import { getPetById } from '@/app/utils/pets';
 
 export default function PetPage() {
   const { pet_id } = useParams();
@@ -19,11 +20,7 @@ export default function PetPage() {
 
     const fetchPet = async () => {
       try {
-        const response = await fetch(`/api/pet/${pet_id}`);
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const data: TPet = await response.json();
+        const data = await getPetById(parseInt(pet_id as string, 10));
         setPetData(data);
       } catch (error) {
         console.error('Erro ao buscar os dados do pet:', error);

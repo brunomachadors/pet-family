@@ -1,8 +1,13 @@
+import { authenticateRequest } from '@/app/utils/token/authenticateRequest';
 import { sql } from '@vercel/postgres';
 import { NextResponse } from 'next/server';
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
+    const authError = authenticateRequest(request);
+    if (authError) {
+      return authError;
+    }
     const { rows } = await sql`
       SELECT * FROM dog_breeds
     `;

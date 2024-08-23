@@ -1,13 +1,17 @@
 import { TPet } from '../types/types';
+import { fetchToken } from './token/getToken';
 
 export async function addPet(
   petData: TPet
 ): Promise<{ success: boolean; message: string; petId?: number }> {
   try {
+    const token = await fetchToken();
+
     const response = await fetch('/api/pet', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(petData),
     });
@@ -36,10 +40,13 @@ export async function updatePet(
   petData: Partial<TPet> & { pet_id: number }
 ): Promise<{ success: boolean; message: string; updatedPet?: TPet }> {
   try {
+    const token = await fetchToken();
+
     const response = await fetch('/api/pet', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(petData),
     });
@@ -68,10 +75,13 @@ export async function removePet(
   pet_id: number
 ): Promise<{ success: boolean; message: string }> {
   try {
+    const token = await fetchToken();
+
     const response = await fetch('/api/pet', {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({ pet_id }),
     });
@@ -94,10 +104,13 @@ export async function removePet(
 
 export async function getPetsByUserId(userId: number): Promise<TPet[]> {
   try {
+    const token = await fetchToken();
+
     const response = await fetch(`/api/pets/${userId}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
       },
     });
 
@@ -116,5 +129,29 @@ export async function getPetsByUserId(userId: number): Promise<TPet[]> {
   } catch (error) {
     console.error('Erro ao buscar pets:', error);
     return [];
+  }
+}
+
+export async function getPetById(petId: number): Promise<TPet> {
+  try {
+    const token = await fetchToken();
+
+    const response = await fetch(`/api/pet/${petId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+
+    const data: TPet = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Erro ao buscar os dados do pet:', error);
+    throw error;
   }
 }
