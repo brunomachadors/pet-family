@@ -17,6 +17,7 @@
     "axios": "^1.7.3",
     "chart.js": "^4.4.3",
     "chartjs-adapter-date-fns": "^3.0.0",
+    "contentful": "^10.15.0",
     "jsonwebtoken": "^9.0.2",
     "next": "14.2.5",
     "react": "^18",
