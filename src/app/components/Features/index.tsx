@@ -1,33 +1,49 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, FeatureHeader, FeatureItem, FeatureList } from './style';
-
-export type FeatureType = {
-  id: number;
-  name: string;
-};
+import { client } from '@/app/utils/content/contentful';
+import { FeaturesFields } from '@/app/types/content';
 
 function Features() {
-  const [features] = useState<FeatureType[]>([
-    { id: 1, name: 'Registro de histórico de vacinas e tratamentos' },
-    { id: 2, name: 'Contatos de veterinários' },
-    { id: 3, name: 'Informações específicas para cada tipo de animal e raça' },
-    { id: 4, name: 'Dicas e informações personalizadas para o seu pet' },
-    { id: 5, name: 'Localização de lugares pet-friendly' },
-    { id: 6, name: 'Cupons de desconto em lojas parceiras' },
-    {
-      id: 7,
-      name: 'Guardar informações sobre o seu animal, incluindo peso, alergias, raça, nome e fotos.',
-    },
-  ]);
+  const [featuresData, setFeaturesData] = useState<FeaturesFields | null>(null);
+
+  useEffect(() => {
+    const fetchFeaturesInfo = async () => {
+      try {
+        const response = await client.getEntries({
+          content_type: 'contentfulpetfamily',
+        });
+
+        if (response.items.length > 0) {
+          const firstItem = response.items[0].fields;
+
+          setFeaturesData({
+            subTitle:
+              typeof firstItem.subTitle === 'string' ? firstItem.subTitle : '',
+            features: Array.isArray(firstItem.features)
+              ? firstItem.features.filter((item) => typeof item === 'string')
+              : [],
+          });
+        }
+      } catch (error) {
+        console.error('Erro ao buscar os dados do Contentful:', error);
+      }
+    };
+
+    fetchFeaturesInfo();
+  }, []);
+
+  if (!featuresData) {
+    return <div>Carregando...</div>;
+  }
 
   return (
     <Container>
-      <FeatureHeader>NOSSOS SERVIÇOS</FeatureHeader>
+      <FeatureHeader>{featuresData.subTitle}</FeatureHeader>
       <FeatureList>
-        {features.map((feature) => (
-          <FeatureItem key={feature.id}>{feature.name}</FeatureItem>
+        {featuresData.features.map((feature, index) => (
+          <FeatureItem key={index}>{feature}</FeatureItem>
         ))}
       </FeatureList>
     </Container>
