@@ -7,12 +7,7 @@ import {
   LandingInfoHeaderSub,
 } from './style';
 import { client } from '@/app/utils/content/contentful';
-
-interface LandingInfoFields {
-  welcome?: string;
-  landingSub?: string;
-  landingContent?: string;
-}
+import { LandingInfoFields } from '@/app/types/content';
 
 export function LandingInfo() {
   const [landingInfo, setLandingInfo] = useState<LandingInfoFields | null>(
@@ -27,7 +22,6 @@ export function LandingInfo() {
         });
 
         if (response.items.length > 0) {
-          // Verifique e cast os campos de acordo com o tipo esperado
           const firstItem = response.items[0].fields as LandingInfoFields;
 
           setLandingInfo({
