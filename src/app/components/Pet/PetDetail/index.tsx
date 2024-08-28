@@ -24,7 +24,7 @@ const PetDetail: React.FC<PetDetailProps> = ({ pet }) => {
   const { user } = useUser();
   const [userId, setUserId] = useState<number | null>(null);
   const [isVerified, setIsVerified] = useState<boolean>(false);
-  const [redirectMessage, setRedirectMessage] = useState<string>(''); // Estado para controlar a mensagem de redirecionamento
+  const [redirectMessage, setRedirectMessage] = useState<string>('');
   const router = useRouter();
 
   useEffect(() => {
@@ -62,7 +62,7 @@ const PetDetail: React.FC<PetDetailProps> = ({ pet }) => {
           );
           setTimeout(() => {
             router.push('/pages/mypets');
-          }, 5000); // Redireciona após 5 segundos
+          }, 5000);
         }
       }
     };
@@ -71,7 +71,7 @@ const PetDetail: React.FC<PetDetailProps> = ({ pet }) => {
   }, [userId, pet.pet_id, router]);
 
   if (!isVerified) {
-    return <p>{redirectMessage}</p>; // Exibe a mensagem de redirecionamento
+    return <p>{redirectMessage}</p>;
   }
 
   const imageUrl =

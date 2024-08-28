@@ -22,7 +22,6 @@ const Mypets: React.FC = () => {
   useEffect(() => {
     const fetchUserId = async () => {
       if (user) {
-        console.log(user);
         const userObj = {
           firstName: user.firstName,
           lastName: user.lastName,
