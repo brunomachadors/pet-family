@@ -5,7 +5,6 @@ import {
   Container,
   Header,
   MainContent,
-  ContactSection,
   FeatureSection,
   HeaderTitle,
   HeaderParagraph,
@@ -55,11 +54,6 @@ const Mypets: React.FC = () => {
             {userId && <PetList userId={userId} />}
           </FeatureSection>
           <AddPetButton />
-          <ContactSection>
-            <h2>Entre em Contato</h2>
-            <p>Se tiver alguma dúvida ou sugestão, entre em contato conosco!</p>
-            <a href="/contact">Contato</a>
-          </ContactSection>
         </MainContent>
       </Container>
     </AuthGuard>

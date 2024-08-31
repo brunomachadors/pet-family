@@ -1,5 +1,3 @@
-'use client';
-
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useClerk } from '@clerk/nextjs';
@@ -10,12 +8,15 @@ import {
   NavLink,
   NavLinkBlack,
   NavList,
-} from './style';
-
+  HamburgerButton,
+  HamburgerLine,
+  MobileMenuContainer,
+} from '../Navbar/style';
 import ModalLogout from '../Modal/Logout';
 
 export const NavBarLoggedIn = () => {
   const [showModal, setShowModal] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { signOut } = useClerk();
 
   const openModal = () => setShowModal(true);
@@ -23,6 +24,14 @@ export const NavBarLoggedIn = () => {
 
   const handleSignOut = () => {
     signOut({ redirectUrl: '/' });
+  };
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
   };
 
   return (
@@ -33,23 +42,36 @@ export const NavBarLoggedIn = () => {
             <NavLinkBlack>PET FAMILY</NavLinkBlack>
           </Link>
         </NavDivBlack>
-        <NavList>
-          <NavItem>
-            <Link href="/pages/mypets">
-              <NavLink>MEUS PETS</NavLink>
-            </Link>
-          </NavItem>
-          <NavItem>
-            <Link href="/pages/about">
-              <NavLink>SOBRE</NavLink>
-            </Link>
-          </NavItem>
-          <NavItem>
-            <NavLink style={{ cursor: 'pointer' }} onClick={openModal}>
-              LOGOUT
-            </NavLink>
-          </NavItem>
-        </NavList>
+        <HamburgerButton onClick={toggleMenu}>
+          <HamburgerLine />
+          <HamburgerLine />
+          <HamburgerLine />
+        </HamburgerButton>
+        <MobileMenuContainer isOpen={isMenuOpen}>
+          <NavList>
+            <NavItem>
+              <Link href="/pages/mypets" passHref>
+                <NavLink onClick={closeMenu}>MEUS PETS</NavLink>
+              </Link>
+            </NavItem>
+            <NavItem>
+              <Link href="/pages/about" passHref>
+                <NavLink onClick={closeMenu}>SOBRE</NavLink>
+              </Link>
+            </NavItem>
+            <NavItem>
+              <NavLink
+                style={{ cursor: 'pointer' }}
+                onClick={() => {
+                  closeMenu();
+                  openModal();
+                }}
+              >
+                LOGOUT
+              </NavLink>
+            </NavItem>
+          </NavList>
+        </MobileMenuContainer>
       </NavContainer>
 
       {showModal && (
