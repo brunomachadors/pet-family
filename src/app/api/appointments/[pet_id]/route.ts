@@ -20,7 +20,7 @@ export async function GET(request: Request) {
     const { rows } = await sql<PetAppointment[]>`
       SELECT * FROM pet_appointments
       WHERE pet_id = ${idPet}
-      ORDER BY activity_date DESC
+      ORDER BY activity_date ASC
     `;
 
     return NextResponse.json(rows);
