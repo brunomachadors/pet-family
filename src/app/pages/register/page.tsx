@@ -1,13 +1,13 @@
 'use client';
 
-import { SignIn } from '@clerk/nextjs';
+import { SignUp } from '@clerk/nextjs';
 import React from 'react';
-import { LoginPage } from './style';
+import { RegisterPage } from './style';
 
-function Login() {
+function Register() {
   return (
-    <LoginPage>
-      <SignIn
+    <RegisterPage>
+      <SignUp
         appearance={{
           elements: {
             footer: {
@@ -16,14 +16,13 @@ function Login() {
           },
           layout: {
             socialButtonsPlacement: 'bottom',
-            logoPlacement: 'inside',
           },
         }}
         routing="hash"
         fallbackRedirectUrl="/pages/mypets"
       />
-    </LoginPage>
+    </RegisterPage>
   );
 }
 
-export default Login;
+export default Register;

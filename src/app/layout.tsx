@@ -5,6 +5,7 @@ import './globals.css';
 import NavBarSwitcher from './components/NavbarSwitcher';
 import { Footer } from './components/Footer/style';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { ptBR } from '@clerk/localizations';
 
 export const metadata: Metadata = {
   title: 'PET FAMILY',
@@ -17,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
+    <ClerkProvider localization={ptBR}>
       <html lang="en">
         <head>
           <link rel="icon" href="/favicon.ico" sizes="any" />
