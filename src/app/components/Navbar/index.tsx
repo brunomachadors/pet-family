@@ -37,8 +37,13 @@ export const NavBar = () => {
         <HamburgerLine />
         <HamburgerLine />
       </HamburgerButton>
-      <MobileMenuContainer isOpen={isMenuOpen}>
+      <MobileMenuContainer $isOpen={isMenuOpen}>
         <NavList>
+          <NavItem>
+            <Link href="/pages/register" passHref>
+              <NavLink onClick={closeMenu}>CADASTRO</NavLink>
+            </Link>
+          </NavItem>
           <NavItem>
             <Link href="/pages/login" passHref>
               <NavLink onClick={closeMenu}>LOGIN</NavLink>

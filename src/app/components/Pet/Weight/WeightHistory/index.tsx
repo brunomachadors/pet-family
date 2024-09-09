@@ -84,7 +84,7 @@ const WeightHistory: React.FC<WeightHistoryProps> = ({
       )}
 
       <ConfirWeightRemoveModal
-        isOpen={isModalOpen}
+        $isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         onConfirm={handleConfirmRemove}
       />

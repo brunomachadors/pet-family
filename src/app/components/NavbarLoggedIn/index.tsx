@@ -47,7 +47,7 @@ export const NavBarLoggedIn = () => {
           <HamburgerLine />
           <HamburgerLine />
         </HamburgerButton>
-        <MobileMenuContainer isOpen={isMenuOpen}>
+        <MobileMenuContainer $isOpen={isMenuOpen}>
           <NavList>
             <NavItem>
               <Link href="/pages/mypets" passHref>

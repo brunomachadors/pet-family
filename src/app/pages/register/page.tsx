@@ -1,17 +1,16 @@
 'use client';
 
-import { SignIn } from '@clerk/nextjs';
+import { SignUp } from '@clerk/nextjs';
 import React from 'react';
+import { Container, LoginLink, RegisterPage } from './style';
 import { useRouter } from 'next/navigation';
-import { Container, CreateAccountLink, LoginPage } from './style';
 
-function Login() {
+function Register() {
   const router = useRouter();
-
   return (
-    <LoginPage>
+    <RegisterPage>
       <Container>
-        <SignIn
+        <SignUp
           appearance={{
             elements: {
               footer: {
@@ -20,19 +19,16 @@ function Login() {
             },
             layout: {
               socialButtonsPlacement: 'bottom',
-              logoPlacement: 'inside',
             },
           }}
           routing="hash"
           fallbackRedirectUrl="/pages/mypets"
         />
-        Não possui conta?
-        <CreateAccountLink onClick={() => router.push('/pages/register')}>
-          Criar conta
-        </CreateAccountLink>
+        Já possui conta?
+        <LoginLink onClick={() => router.push('/pages/login')}>Login</LoginLink>
       </Container>
-    </LoginPage>
+    </RegisterPage>
   );
 }
 
-export default Login;
+export default Register;

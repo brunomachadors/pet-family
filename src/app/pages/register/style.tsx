@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const LoginPage = styled.div`
+export const RegisterPage = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -17,7 +17,7 @@ export const Container = styled.div`
   gap: 25px;
 `;
 
-export const CreateAccountLink = styled.a`
+export const LoginLink = styled.a`
   cursor: pointer;
   color: #45474b;
   text-decoration: underline;
