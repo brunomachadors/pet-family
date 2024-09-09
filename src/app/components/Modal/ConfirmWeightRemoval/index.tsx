@@ -12,17 +12,17 @@ import {
 } from './style';
 
 interface ConfirmWeightRemoveModalProps {
-  isOpen: boolean;
+  $isOpen: boolean;
   onClose: () => void;
   onConfirm: () => void;
 }
 
 export default function ConfirWeightRemoveModal({
-  isOpen,
+  $isOpen,
   onClose,
   onConfirm,
 }: ConfirmWeightRemoveModalProps) {
-  if (!isOpen) return null;
+  if (!$isOpen) return null;
 
   return (
     <ModalOverlay onClick={onClose}>

@@ -2,25 +2,31 @@
 
 import { SignUp } from '@clerk/nextjs';
 import React from 'react';
-import { RegisterPage } from './style';
+import { Container, LoginLink, RegisterPage } from './style';
+import { useRouter } from 'next/navigation';
 
 function Register() {
+  const router = useRouter();
   return (
     <RegisterPage>
-      <SignUp
-        appearance={{
-          elements: {
-            footer: {
-              display: 'none',
+      <Container>
+        <SignUp
+          appearance={{
+            elements: {
+              footer: {
+                display: 'none',
+              },
             },
-          },
-          layout: {
-            socialButtonsPlacement: 'bottom',
-          },
-        }}
-        routing="hash"
-        fallbackRedirectUrl="/pages/mypets"
-      />
+            layout: {
+              socialButtonsPlacement: 'bottom',
+            },
+          }}
+          routing="hash"
+          fallbackRedirectUrl="/pages/mypets"
+        />
+        Já possui conta?
+        <LoginLink onClick={() => router.push('/pages/login')}>Login</LoginLink>
+      </Container>
     </RegisterPage>
   );
 }

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 interface MobileMenuContainerProps {
-  isOpen: boolean;
+  $isOpen: boolean;
 }
 
 export const NavContainer = styled.nav`
@@ -98,7 +98,7 @@ export const HamburgerLine = styled.div`
 `;
 
 export const MobileMenuContainer = styled.div<MobileMenuContainerProps>`
-  display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
+  display: ${({ $isOpen }) => ($isOpen ? 'flex' : 'none')};
   flex-direction: column;
   align-items: center;
   background-color: #fad72c;

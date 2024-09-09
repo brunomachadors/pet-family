@@ -42,7 +42,7 @@ export default function RemovePetButton({ petId }: RemovePetButtonProps) {
         />
       </RemoveButtonContainer>
       <ConfirmRemoveModal
-        isOpen={isConfirming}
+        $isOpen={isConfirming}
         onClose={closeModal}
         onConfirm={confirmRemove}
       />
