@@ -8,7 +8,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ptBR } from '@clerk/localizations';
 
 export const metadata: Metadata = {
-  title: 'PET FAMILY',
+  title: 'PETSAURO',
   description: 'Site para ajudar a gerir toda a rotina e cuidados do seu pet',
 };
 

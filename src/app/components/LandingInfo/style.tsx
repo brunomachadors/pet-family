@@ -21,6 +21,7 @@ export const LandingInfoHeader = styled.h1`
 
 export const LandingInfoHeaderSub = styled.h3`
   color: #f5f7f8;
+  text-align: center;
 
   @media (max-width: 1280px) {
     max-width: 90%;

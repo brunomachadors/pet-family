@@ -19,7 +19,6 @@ function Login() {
               },
             },
             layout: {
-              socialButtonsPlacement: 'bottom',
               logoPlacement: 'inside',
             },
           }}

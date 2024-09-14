@@ -17,9 +17,6 @@ function Register() {
                 display: 'none',
               },
             },
-            layout: {
-              socialButtonsPlacement: 'bottom',
-            },
           }}
           routing="hash"
           fallbackRedirectUrl="/pages/mypets"
