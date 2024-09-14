@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import {
   NavContainer,
@@ -16,6 +16,12 @@ import {
 
 export const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isClient, setIsClient] = useState(false);
+
+  // Certificar que estamos no lado do cliente
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -25,11 +31,13 @@ export const NavBar = () => {
     setIsMenuOpen(false);
   };
 
+  if (!isClient) return null;
+
   return (
     <NavContainer>
       <NavDivBlack>
-        <Link href="/" passHref>
-          <NavLinkBlack>PET FAMILY</NavLinkBlack>
+        <Link href="/" style={{ textDecoration: 'none' }}>
+          <NavLinkBlack>PETSAURO</NavLinkBlack>
         </Link>
       </NavDivBlack>
       <HamburgerButton onClick={toggleMenu}>
@@ -40,17 +48,12 @@ export const NavBar = () => {
       <MobileMenuContainer $isOpen={isMenuOpen}>
         <NavList>
           <NavItem>
-            <Link href="/pages/register" passHref>
-              <NavLink onClick={closeMenu}>CADASTRO</NavLink>
-            </Link>
-          </NavItem>
-          <NavItem>
-            <Link href="/pages/login" passHref>
+            <Link href="/pages/login" style={{ textDecoration: 'none' }}>
               <NavLink onClick={closeMenu}>LOGIN</NavLink>
             </Link>
           </NavItem>
           <NavItem>
-            <Link href="/pages/about" passHref>
+            <Link href="/pages/about" style={{ textDecoration: 'none' }}>
               <NavLink onClick={closeMenu}>SOBRE</NavLink>
             </Link>
           </NavItem>

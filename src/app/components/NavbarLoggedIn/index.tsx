@@ -38,8 +38,8 @@ export const NavBarLoggedIn = () => {
     <>
       <NavContainer>
         <NavDivBlack>
-          <Link href="/" passHref>
-            <NavLinkBlack>PET FAMILY</NavLinkBlack>
+          <Link href="/" style={{ textDecoration: 'none' }}>
+            <NavLinkBlack>PETSAURO</NavLinkBlack>
           </Link>
         </NavDivBlack>
         <HamburgerButton onClick={toggleMenu}>
@@ -50,18 +50,17 @@ export const NavBarLoggedIn = () => {
         <MobileMenuContainer $isOpen={isMenuOpen}>
           <NavList>
             <NavItem>
-              <Link href="/pages/mypets" passHref>
+              <Link href="/pages/mypets" style={{ textDecoration: 'none' }}>
                 <NavLink onClick={closeMenu}>MEUS PETS</NavLink>
               </Link>
             </NavItem>
             <NavItem>
-              <Link href="/pages/about" passHref>
+              <Link href="/pages/about" style={{ textDecoration: 'none' }}>
                 <NavLink onClick={closeMenu}>SOBRE</NavLink>
               </Link>
             </NavItem>
             <NavItem>
               <NavLink
-                style={{ cursor: 'pointer' }}
                 onClick={() => {
                   closeMenu();
                   openModal();

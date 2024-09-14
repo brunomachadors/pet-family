@@ -2,8 +2,8 @@
 
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { BannerDiv } from './style';
-import { client } from '@/app/utils/content/contentful'; // Importa o cliente existente
+import { BannerDiv, ImageWrapper } from './style'; // Importando novo wrapper
+import { client } from '@/app/utils/content/contentful';
 
 export function DogBanner() {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
@@ -11,7 +11,7 @@ export function DogBanner() {
   useEffect(() => {
     const fetchImage = async () => {
       try {
-        const response = await client.getAsset('4R3VTDIXNm1V0w8m7kGCH');
+        const response = await client.getAsset('2vC9vADNExgCLwmmRNPD5g');
 
         if (
           response.fields &&
@@ -37,14 +37,9 @@ export function DogBanner() {
 
   return (
     <BannerDiv>
-      <Image
-        src={imageUrl}
-        alt="French Bulldog"
-        width={500}
-        height={500}
-        priority
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 500px"
-      />
+      <ImageWrapper>
+        <Image src={imageUrl} alt="French Bulldog" fill priority />
+      </ImageWrapper>
     </BannerDiv>
   );
 }
