@@ -24,14 +24,17 @@ O Pet Family é um site dedicado a ajudar os donos de pets a manterem todas as i
 ### Futuras
 
 - [ ] **Histórico de Vacinas e Tratamentos**:
+
   - Mantenha um registro detalhado das vacinas e tratamentos do seu pet.
   - Receba notificações sobre vacinas e consultas futuras.
 
 - [ ] **Contatos Veterinários**:
+
   - Adicione e gerencie contatos de veterinários.
   - Acesse informações de contato rapidamente em caso de emergência.
 
 - [ ] **Localizações Pet-Friendly**:
+
   - Encontre lugares como parques, restaurantes e lojas que são pet-friendly.
   - Veja avaliações e recomendações de outros usuários.
 
@@ -65,8 +68,8 @@ O Pet Family é um site dedicado a ajudar os donos de pets a manterem todas as i
 1. **Clone o repositório**:
 
    ```bash
-   git clone https://github.com/brunomachadors/pet-family.git
-   cd pet-family
+   git clone https://github.com/brunomachadors/petsauro.git
+   cd petsauro
    ```
 
 2. **Instale as dependências**:
@@ -113,5 +116,3 @@ Consulte nossa [documentação de implantação do Next.js](https://nextjs.org/d
 ## Preview
 
 ![alt text](/public/image.png)
-
-

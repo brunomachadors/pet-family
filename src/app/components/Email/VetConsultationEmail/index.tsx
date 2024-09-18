@@ -81,7 +81,7 @@ export const VetConsultationEmail: React.FC<
           Equipe Pet Family
         </Text>
         <Button
-          href="https://pet-family.vercel.app/"
+          href="https://petsauro.vercel.app/"
           style={{
             backgroundColor: '#45474b',
             color: '#f5f7f8',

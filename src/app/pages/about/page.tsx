@@ -87,7 +87,7 @@ const AboutPage = () => {
           <LinkedInIcon />
         </SocialLink>
         <SocialLink
-          href="https://github.com/brunomachadors/pet-family"
+          href="https://github.com/brunomachadors/petsauro"
           target="_blank"
           rel="noopener noreferrer"
         >
